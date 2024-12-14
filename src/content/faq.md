@@ -122,18 +122,12 @@ body:
       together they can result in a bundler that is multiple orders of
       magnitude faster than other bundlers commonly in use today.
 
-  - h2: Benchmark details
+## Benchmark details
 
-  - p: >
-      Here are the details about each benchmark:
+* _Example:_ time to do a production bundle of 10 copies of the [three.js](https://github.com/mrdoob/three.js)
+![](statics/index.1.png)
 
-  - figcaption: JavaScript benchmark
-  - benchmark:
-      '[esbuild](https://esbuild.github.io/)': 0.39
-      '[parcel 2](https://parceljs.org/)': 14.91
-      '[rollup 4](https://rollupjs.org/) + [terser](https://terser.org/)': 34.10
-      '[webpack 5](https://webpack.js.org/)': 41.21
-
+TODO:
   - p: >
       This benchmark approximates a large JavaScript codebase by duplicating
       the [three.js](https://github.com/mrdoob/three.js) library 10 times
