@@ -1,13 +1,17 @@
-title: API
-body:
-  - h1: API
-  - p: >
-      The API can be accessed in one of three languages: on the command line, in
-      JavaScript, and in Go. The concepts and parameters are largely identical
-      between the three languages so they will be presented together here
-      instead of having separate documentation for each language. You can switch
-      between languages using the `CLI`, `JS`, and `Go` tabs in the top-right
-      corner of each code example. Some specifics for each language:
+* API
+  * ways to access to it
+    * CL
+      * 👀flags forms 👀
+        * form `--foo` -- for enabling -- boolean flags
+          * _Example:_ [`--minify`](#minify)
+        * form `--foo=bar` -- for -- flags / have 1! value & are specified 1!
+          * _Example:_ [`--platform=`](#platform)
+        * form `--foo:bar`-- for -- flags / have multiple values & can be re-specified multiple times
+          * _Example:_ [`--external:`](#external)
+    * JS
+    * Go
+  * concepts & parameters
+    * == | ALL allowed ways to access == SAME documentation
 
   - ul:
     - >
