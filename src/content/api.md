@@ -8,288 +8,251 @@
           * _Example:_ [`--platform=`](#platform)
         * form `--foo:bar`-- for -- flags / have multiple values & can be re-specified multiple times
           * _Example:_ [`--external:`](#external)
+      * general == NOT esbuild-specific
+        * 👀-> your current shell -- interprets the -- command's arguments | BEFORE the command running sees them👀
+            * == specific behavior -- depends on the -- used shell
+            * _Example:_ `echo` command just writes out / it reads in
+                * `echo "foo"` can print `foo` instead of `"foo"`
+                * `echo *.json` can print `package.json` instead of `*.json`
+      * recommendations
+        * use esbuild's JavaScript or Go APIs
     * JS
+      * see
+        * [JS-specific details](#js-details)
+        * [browser](#browser)
+        * [TypeScript type definitions](https://github.com/evanw/esbuild/blob/main/lib/shared/types.ts)
     * Go
+      * see 
+        * [`pkg/api`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/api)
+        * [`pkg/cli`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/cli) 
   * concepts & parameters
     * == | ALL allowed ways to access == SAME documentation
 
-        <p>
-        Also keep in mind that using a CLI (in general, not specific to esbuild)
-        means that your current shell interprets the command's arguments before
-        the command you are running sees them. For example, even though the `echo`
-        command just writes out what it reads in, `echo "foo"` can print `foo`
-        instead of `"foo"`, and `echo *.json` can print `package.json` instead of
-        `*.json` (the specific behavior depends on which shell you use). If you
-        want to avoid the problems that shell-specific behavior can cause, then
-        you should use esbuild's JavaScript or Go APIs instead of esbuild's CLI.
-        </p>
-
-      - >
-        <p>
-        **JavaScript:** If you are using JavaScript be sure to check out the
-        [JS-specific details](#js-details) and [browser](#browser)
-        sections below. You may also find the
-        [TypeScript type definitions](https://github.com/evanw/esbuild/blob/main/lib/shared/types.ts)
-        for esbuild helpful as a reference.
-        </p>
-
-      - >
-        <p>
-        **Go:** If you are using Go, you may find the automatically generated
-        Go documentation for esbuild helpful as a reference. There is separate
-        documentation for both of the public Go packages:
-        [`pkg/api`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/api)
-        and [`pkg/cli`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/cli).
-        </p>
-
 # Overview
 
-  - p: >
-      The two most commonly-used esbuild APIs are [build](#build) and [transform](#transform).
-      Each is described below at a high level, followed by documentation
-      for each individual API option.
+* 👀MOST commonly-used esbuild APIs 👀
+  * [build](#build)
+  * [transform](#transform)
 
 ## Build
 
-  - p: >
-      This is the primary interface to esbuild. You typically pass one or more
-      [entry point](#entry-points) files to process along with various options,
-      and then esbuild writes the results back out to the file system. Here's a
-      simple example that enables [bundling](#bundle) with an [output directory](#outdir):
+* PRIMARY interface to esbuild
+* arguments
+  * \>=1 [entry point](#entry-points) files
+  * VARIOUS options
+* how does it work?
+  * 💡arguments -- writes the -- results | file system 💡
 
-  - example:
-      in:
-        app.ts: '1+2'
+* _Example:_ enables [bundling](#bundle) + [output directory](#outdir)
+  * | CLI
+    ```
+    esbuild app.ts --bundle --outdir=dist
+    ```  
+  * | JS
+    ```
+    node module.mjs
+    ```
+  * | GO  
+    * Problems: How to run?
+      * Attempt1: `go main.go`
 
-      cli: |
-        esbuild app.ts --bundle --outdir=dist
+* build context
+  * allows
+    * using deeply the build API
+  * == explicit object | JS and Go
+  * == implicit | CLI
+  * ALL builds | SAME context -> SAME build options -> subsequent builds are done incrementally
+    * == they reuse some work -- from -- previous builds / improve performance
+  * use cases
+    * | development
+      * Reason: 🧠 esbuild can rebuild your app | background & while you work 🧠
 
-      mjs: |
-        import * as esbuild from 'esbuild'
+* incremental build APIs
+  * [**Watch mode**](#watch)
+    * TODO: tells esbuild to watch the file system and
+                    automatically rebuild for you whenever you edit and save a file that
+                    could invalidate the build. Here's an example:
 
-        let result = await esbuild.build({
-          entryPoints: ['app.ts'],
-          bundle: true,
-          outdir: 'dist',
-        })
-        console.log(result)
+                - example:
+                    noCheck: true
 
-      go: |
-        package main
+                    cli:
+                      - $: |
+                          esbuild app.ts --bundle --outdir=dist --watch
+                      - expect: |
+                          [watch] build finished, watching for changes...
 
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
+                    mjs: |
+                      let ctx = await esbuild.context({
+                        entryPoints: ['app.ts'],
+                        bundle: true,
+                        outdir: 'dist',
+                      })
 
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.ts"},
-            Bundle:      true,
-            Outdir:      "dist",
-          })
-          if len(result.Errors) != 0 {
-            os.Exit(1)
-          }
-        }
+                      await ctx.watch()
 
-  - p: >
-      Advanced use of the build API involves setting up a long-running build
-      context. This context is an explicit object in JS and Go but is implicit
-      with the CLI. All builds done with a given context share the same build
-      options, and subsequent builds are done incrementally (i.e. they reuse
-      some work from previous builds to improve performance). This is useful
-      for development because esbuild can rebuild your app in the background
-      for you while you work.
+                    go: |
+                      ctx, err := api.Context(api.BuildOptions{
+                        EntryPoints: []string{"app.ts"},
+                        Bundle:      true,
+                        Outdir:      "dist",
+                      })
 
-  - p: >
-      There are three different incremental build APIs:
+                      err2 := ctx.Watch(api.WatchOptions{})
 
-  - ul:
-    - >
-      [**Watch mode**](#watch) tells esbuild to watch the file system and
-      automatically rebuild for you whenever you edit and save a file that
-      could invalidate the build. Here's an example:
+  * [**Serve mode**](#serve)
+    * starts a local development server that serves the
+                        results of the latest build. Incoming requests automatically start new
+                        builds so your web app is always up to date when you reload the page in
+                        the browser. Here's an example:
 
-  - example:
-      noCheck: true
+                    - example:
+                        noCheck: true
 
-      cli:
-        - $: |
-            esbuild app.ts --bundle --outdir=dist --watch
-        - expect: |
-            [watch] build finished, watching for changes...
+                        cli:
+                          - $: |
+                              esbuild app.ts --bundle --outdir=dist --serve
+                          - expect: |2
 
-      mjs: |
-        let ctx = await esbuild.context({
-          entryPoints: ['app.ts'],
-          bundle: true,
-          outdir: 'dist',
-        })
+             >                   Local:   http://127.0.0.1:8000/
+             >                   Network: http://192.168.0.1:8000/
 
-        await ctx.watch()
+                              127.0.0.1:61302 - "GET /" 200 [1ms]
 
-      go: |
-        ctx, err := api.Context(api.BuildOptions{
-          EntryPoints: []string{"app.ts"},
-          Bundle:      true,
-          Outdir:      "dist",
-        })
+                        mjs: |
+                          let ctx = await esbuild.context({
+                            entryPoints: ['app.ts'],
+                            bundle: true,
+                            outdir: 'dist',
+                          })
 
-        err2 := ctx.Watch(api.WatchOptions{})
+                          let { host, port } = await ctx.serve()
 
-  - ul:
-    - >
-      [**Serve mode**](#serve) starts a local development server that serves the
-      results of the latest build. Incoming requests automatically start new
-      builds so your web app is always up to date when you reload the page in
-      the browser. Here's an example:
+                        go: |
+                          ctx, err := api.Context(api.BuildOptions{
+                            EntryPoints: []string{"app.ts"},
+                            Bundle:      true,
+                            Outdir:      "dist",
+                          })
 
-  - example:
-      noCheck: true
+                          server, err2 := ctx.Serve(api.ServeOptions{})
 
-      cli:
-        - $: |
-            esbuild app.ts --bundle --outdir=dist --serve
-        - expect: |2
+                    - ul:
+                      - >
+                        [**Rebuild mode**](#rebuild) lets you manually invoke a build. This is useful
+                        when integrating esbuild with other tools (e.g. using a custom file watcher
+                        or development server instead of esbuild's built-in ones). Here's an example:
 
-             > Local:   http://127.0.0.1:8000/
-             > Network: http://192.168.0.1:8000/
+                    - example:
+                        noCheck: true
 
-            127.0.0.1:61302 - "GET /" 200 [1ms]
+                        cli: |
+                          # The CLI does not have an API for "rebuild"
 
-      mjs: |
-        let ctx = await esbuild.context({
-          entryPoints: ['app.ts'],
-          bundle: true,
-          outdir: 'dist',
-        })
+                        mjs: |
+                          let ctx = await esbuild.context({
+                            entryPoints: ['app.ts'],
+                            bundle: true,
+                            outdir: 'dist',
+                          })
 
-        let { host, port } = await ctx.serve()
+                          for (let i = 0; i < 5; i++) {
+                            let result = await ctx.rebuild()
+                          }
 
-      go: |
-        ctx, err := api.Context(api.BuildOptions{
-          EntryPoints: []string{"app.ts"},
-          Bundle:      true,
-          Outdir:      "dist",
-        })
+                        go: |
+                          ctx, err := api.Context(api.BuildOptions{
+                            EntryPoints: []string{"app.ts"},
+                            Bundle:      true,
+                            Outdir:      "dist",
+                          })
 
-        server, err2 := ctx.Serve(api.ServeOptions{})
+                          for i := 0; i < 5; i++ {
+                            result := ctx.Rebuild()
+                          }
 
-  - ul:
-    - >
-      [**Rebuild mode**](#rebuild) lets you manually invoke a build. This is useful
-      when integrating esbuild with other tools (e.g. using a custom file watcher
-      or development server instead of esbuild's built-in ones). Here's an example:
+                    - p: >
+                        These three incremental build APIs can be combined. To enable [live reloading](#live-reload)
+                        (automatically reloading the page when you edit and save a file) you'll need
+                        to enable [watch](#watch) and [serve](#serve) together on the same context.
 
-  - example:
-      noCheck: true
+                    - p: >
+                        When you are done with a context object, you can call `dispose()` on the
+                        context to wait for existing builds to finish, stop watch and/or serve mode,
+                        and free up resources.
 
-      cli: |
-        # The CLI does not have an API for "rebuild"
+                    - p: >
+                        The build and context APIs both take the following options:
 
-      mjs: |
-        let ctx = await esbuild.context({
-          entryPoints: ['app.ts'],
-          bundle: true,
-          outdir: 'dist',
-        })
-
-        for (let i = 0; i < 5; i++) {
-          let result = await ctx.rebuild()
-        }
-
-      go: |
-        ctx, err := api.Context(api.BuildOptions{
-          EntryPoints: []string{"app.ts"},
-          Bundle:      true,
-          Outdir:      "dist",
-        })
-
-        for i := 0; i < 5; i++ {
-          result := ctx.Rebuild()
-        }
-
-  - p: >
-      These three incremental build APIs can be combined. To enable [live reloading](#live-reload)
-      (automatically reloading the page when you edit and save a file) you'll need
-      to enable [watch](#watch) and [serve](#serve) together on the same context.
-
-  - p: >
-      When you are done with a context object, you can call `dispose()` on the
-      context to wait for existing builds to finish, stop watch and/or serve mode,
-      and free up resources.
-
-  - p: >
-      The build and context APIs both take the following options:
-
-  - available-options:
-    - Alias
-    - Allow overwrite
-    - Analyze
-    - Asset names
-    - Banner
-    - Bundle
-    - Cancel
-    - Charset
-    - Chunk names
-    - Color
-    - Conditions
-    - Define
-    - Drop
-    - Drop labels
-    - Entry names
-    - Entry points
-    - External
-    - Footer
-    - Format
-    - Format messages
-    - Global name
-    - Ignore annotations
-    - Inject
-    - JSX
-    - JSX dev
-    - JSX factory
-    - JSX fragment
-    - JSX import source
-    - JSX side effects
-    - Keep names
-    - Legal comments
-    - Line limit
-    - Live reload
-    - Loader
-    - Log level
-    - Log limit
-    - Log override
-    - Main fields
-    - Mangle props
-    - Metafile
-    - Minify
-    - Node paths
-    - Out extension
-    - Outbase
-    - Outdir
-    - Outfile
-    - Packages
-    - Platform
-    - Preserve symlinks
-    - Public path
-    - Pure
-    - Rebuild
-    - Resolve extensions
-    - Serve
-    - Source root
-    - Sourcefile
-    - Sourcemap
-    - Sources content
-    - Splitting
-    - Stdin
-    - Supported
-    - Target
-    - Tree shaking
-    - Tsconfig
-    - Tsconfig raw
-    - Watch
-    - Working directory
-    - Write
+                    - available-options:
+                      - Alias
+                      - Allow overwrite
+                      - Analyze
+                      - Asset names
+                      - Banner
+                      - Bundle
+                      - Cancel
+                      - Charset
+                      - Chunk names
+                      - Color
+                      - Conditions
+                      - Define
+                      - Drop
+                      - Drop labels
+                      - Entry names
+                      - Entry points
+                      - External
+                      - Footer
+                      - Format
+                      - Format messages
+                      - Global name
+                      - Ignore annotations
+                      - Inject
+                      - JSX
+                      - JSX dev
+                      - JSX factory
+                      - JSX fragment
+                      - JSX import source
+                      - JSX side effects
+                      - Keep names
+                      - Legal comments
+                      - Line limit
+                      - Live reload
+                      - Loader
+                      - Log level
+                      - Log limit
+                      - Log override
+                      - Main fields
+                      - Mangle props
+                      - Metafile
+                      - Minify
+                      - Node paths
+                      - Out extension
+                      - Outbase
+                      - Outdir
+                      - Outfile
+                      - Packages
+                      - Platform
+                      - Preserve symlinks
+                      - Public path
+                      - Pure
+                      - Rebuild
+                      - Resolve extensions
+                      - Serve
+                      - Source root
+                      - Sourcefile
+                      - Sourcemap
+                      - Sources content
+                      - Splitting
+                      - Stdin
+                      - Supported
+                      - Target
+                      - Tree shaking
+                      - Tsconfig
+                      - Tsconfig raw
+                      - Watch
+                      - Working directory
+                      - Write
 
 ## Transform
 
@@ -381,7 +344,7 @@
     - Tree shaking
     - Tsconfig raw
 
-  - h3#js-details: JS-specific details
+## js-details: JS-specific details
 
   - p: >
       The JS API for esbuild comes in both asynchronous and synchronous flavors.
@@ -459,7 +422,7 @@
     - >
       Using the synchronous API prevents esbuild from parallelizing esbuild API calls
 
-  - h3#browser: In the browser
+## browser: In the browser
 
   - p: >
       The esbuild API can also run in the browser using WebAssembly in a Web
