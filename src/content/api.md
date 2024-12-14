@@ -13,54 +13,43 @@
   * concepts & parameters
     * == | ALL allowed ways to access == SAME documentation
 
-  - ul:
-    - >
-      <p>
-      **CLI:** If you are using the command-line API, it may be helpful to know that the
-      flags come in one of three forms: `--foo`, `--foo=bar`, or `--foo:bar`.
-      The form `--foo` is used for enabling boolean flags such as [`--minify`](#minify),
-      the form `--foo=bar` is used for flags that have a single value and are
-      only specified once such as [`--platform=`](#platform), and the form
-      `--foo:bar` is used for flags that have multiple values and can be
-      re-specified multiple times such as [`--external:`](#external).
-      </p>
-      <p>
-      Also keep in mind that using a CLI (in general, not specific to esbuild)
-      means that your current shell interprets the command's arguments before
-      the command you are running sees them. For example, even though the `echo`
-      command just writes out what it reads in, `echo "foo"` can print `foo`
-      instead of `"foo"`, and `echo *.json` can print `package.json` instead of
-      `*.json` (the specific behavior depends on which shell you use). If you
-      want to avoid the problems that shell-specific behavior can cause, then
-      you should use esbuild's JavaScript or Go APIs instead of esbuild's CLI.
-      </p>
+        <p>
+        Also keep in mind that using a CLI (in general, not specific to esbuild)
+        means that your current shell interprets the command's arguments before
+        the command you are running sees them. For example, even though the `echo`
+        command just writes out what it reads in, `echo "foo"` can print `foo`
+        instead of `"foo"`, and `echo *.json` can print `package.json` instead of
+        `*.json` (the specific behavior depends on which shell you use). If you
+        want to avoid the problems that shell-specific behavior can cause, then
+        you should use esbuild's JavaScript or Go APIs instead of esbuild's CLI.
+        </p>
 
-    - >
-      <p>
-      **JavaScript:** If you are using JavaScript be sure to check out the
-      [JS-specific details](#js-details) and [browser](#browser)
-      sections below. You may also find the
-      [TypeScript type definitions](https://github.com/evanw/esbuild/blob/main/lib/shared/types.ts)
-      for esbuild helpful as a reference.
-      </p>
+      - >
+        <p>
+        **JavaScript:** If you are using JavaScript be sure to check out the
+        [JS-specific details](#js-details) and [browser](#browser)
+        sections below. You may also find the
+        [TypeScript type definitions](https://github.com/evanw/esbuild/blob/main/lib/shared/types.ts)
+        for esbuild helpful as a reference.
+        </p>
 
-    - >
-      <p>
-      **Go:** If you are using Go, you may find the automatically generated
-      Go documentation for esbuild helpful as a reference. There is separate
-      documentation for both of the public Go packages:
-      [`pkg/api`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/api)
-      and [`pkg/cli`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/cli).
-      </p>
+      - >
+        <p>
+        **Go:** If you are using Go, you may find the automatically generated
+        Go documentation for esbuild helpful as a reference. There is separate
+        documentation for both of the public Go packages:
+        [`pkg/api`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/api)
+        and [`pkg/cli`](https://pkg.go.dev/github.com/evanw/esbuild/pkg/cli).
+        </p>
 
-  - h2: Overview
+# Overview
 
   - p: >
       The two most commonly-used esbuild APIs are [build](#build) and [transform](#transform).
       Each is described below at a high level, followed by documentation
       for each individual API option.
 
-  - h3: Build
+## Build
 
   - p: >
       This is the primary interface to esbuild. You typically pass one or more
@@ -302,7 +291,7 @@
     - Working directory
     - Write
 
-  - h3: Transform
+## Transform
 
   - p: >
       This is a limited special-case of [build](#build) that transforms a string
@@ -534,9 +523,9 @@
         ...
       </script>
 
-  - h2: General options
+  # General options
 
-  - h3: Bundle
+  ## Bundle
 
   - p: >
       To bundle a file means to inline any imported dependencies into the
@@ -708,7 +697,7 @@
       any subdirectory).
       </p>
 
-  - h3: Cancel
+  ## Cancel
 
   - p: >
       If you are using [rebuild](#rebuild) to manually invoke incremental
@@ -786,7 +775,7 @@
       build that still hasn't ended yet. Note that plugin [on-end callbacks](/plugins/#on-end)
       will still be run regardless of whether or not the build was canceled.
 
-  - h3: Live reload
+  ## Live reload
 
   - p: >
       Live reload is an approach to development where you have your browser
@@ -983,7 +972,7 @@
       live-reloading with JavaScript can be almost as fast as hot-reloading
       with JavaScript would be.
 
-  - h3: Platform
+  ## Platform
 
   - p: >
       By default, esbuild's bundler is configured to generate code intended for
@@ -1180,7 +1169,7 @@
       See also [bundling for the browser](/getting-started/#bundling-for-the-browser)
       and [bundling for node](/getting-started/#bundling-for-node).
 
-  - h3: Rebuild
+  ## Rebuild
 
   - p: >
       You may want to use this API if your use case involves calling esbuild's
@@ -1264,7 +1253,7 @@
           ctx.Dispose()
         }
 
-  - h3: Serve
+  ## Serve
 
   - info: >
       If you want your app to automatically reload as you edit, you should
@@ -1653,7 +1642,7 @@
       You can also use a real proxy such as [nginx](https://nginx.org/en/docs/beginners_guide.html#proxy)
       if you have more advanced needs.
 
-  - h3: Tsconfig
+  ## Tsconfig
 
   - p: >
       Normally the [build](#build) API automatically discovers `tsconfig.json`
@@ -1699,7 +1688,7 @@
           }
         }
 
-  - h3: Tsconfig raw
+  ## Tsconfig raw
 
   - p: >
       This option can be used to pass your `tsconfig.json` file to the
@@ -1749,7 +1738,7 @@
           }
         }
 
-  - h3: Watch
+  ## Watch
 
   - p: >
       Enabling watch mode tells esbuild to listen for changes on the file system
@@ -1933,125 +1922,125 @@
 
 * TODO:
 
-  - p: >
-      This will generate two output files, `out/home.js` and `out/settings.js`
-      corresponding to the two entry points `home.ts` and `settings.ts`.
+- p: >
+    This will generate two output files, `out/home.js` and `out/settings.js`
+    corresponding to the two entry points `home.ts` and `settings.ts`.
 
-  - p: >
-      For further control over how the paths of the output files are derived
-      from the corresponding input entry points, you should look into these
-      options:
+- p: >
+    For further control over how the paths of the output files are derived
+    from the corresponding input entry points, you should look into these
+    options:
 
-  - ul:
-    - '[Entry names](#entry-names)'
-    - '[Out extension](#out-extension)'
-    - '[Outbase](#outbase)'
-    - '[Outdir](#outdir)'
-    - '[Outfile](#outfile)'
+- ul:
+  - '[Entry names](#entry-names)'
+  - '[Out extension](#out-extension)'
+  - '[Outbase](#outbase)'
+  - '[Outdir](#outdir)'
+  - '[Outfile](#outfile)'
 
-  - p: >
-      In addition, you can also specify a fully custom output path for each
-      individual entry point using an alternative entry point syntax:
+- p: >
+    In addition, you can also specify a fully custom output path for each
+    individual entry point using an alternative entry point syntax:
 
-  - example:
-      in:
-        home.ts: '1 + 2'
-        settings.ts: '1 + 2'
+- example:
+    in:
+      home.ts: '1 + 2'
+      settings.ts: '1 + 2'
 
-      cli: |
-        esbuild out1=home.ts out2=settings.ts --bundle --outdir=out
+    cli: |
+      esbuild out1=home.ts out2=settings.ts --bundle --outdir=out
 
-      mjs: |
-        import * as esbuild from 'esbuild'
+    mjs: |
+      import * as esbuild from 'esbuild'
 
-        await esbuild.build({
-          entryPoints: [
-            { out: 'out1', in: 'home.ts'},
-            { out: 'out2', in: 'settings.ts'},
-          ],
-          bundle: true,
-          write: true,
-          outdir: 'out',
+      await esbuild.build({
+        entryPoints: [
+          { out: 'out1', in: 'home.ts'},
+          { out: 'out2', in: 'settings.ts'},
+        ],
+        bundle: true,
+        write: true,
+        outdir: 'out',
+      })
+
+    go: |
+      package main
+
+      import "github.com/evanw/esbuild/pkg/api"
+      import "os"
+
+      func main() {
+        result := api.Build(api.BuildOptions{
+          EntryPointsAdvanced: []api.EntryPoint{{
+            OutputPath: "out1",
+            InputPath:  "home.ts",
+          }, {
+            OutputPath: "out2",
+            InputPath:  "settings.ts",
+          }},
+          Bundle: true,
+          Write:  true,
+          Outdir: "out",
         })
 
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPointsAdvanced: []api.EntryPoint{{
-              OutputPath: "out1",
-              InputPath:  "home.ts",
-            }, {
-              OutputPath: "out2",
-              InputPath:  "settings.ts",
-            }},
-            Bundle: true,
-            Write:  true,
-            Outdir: "out",
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
+        if len(result.Errors) > 0 {
+          os.Exit(1)
         }
+      }
 
-  - p: >
-      This will generate two output files, `out/out1.js` and `out/out2.js`
-      corresponding to the two entry points `home.ts` and `settings.ts`.
+- p: >
+    This will generate two output files, `out/out1.js` and `out/out2.js`
+    corresponding to the two entry points `home.ts` and `settings.ts`.
 
-  - h4: Glob-style entry points
+### Glob-style entry points
 
-  - p: >
-      If an entry point contains the `*` character, then it's considered to be
-      a [glob](https://en.wikipedia.org/wiki/Glob_(programming)) pattern. This
-      means esbuild will use that entry point as a pattern to search for files
-      on the file system and will then replace that entry point with any
-      matching files that were found. So for example, an entry point of `*.js`
-      will cause esbuild to consider all files in the current directory that
-      end in `.js` to be entry points.
+- p: >
+    If an entry point contains the `*` character, then it's considered to be
+    a [glob](https://en.wikipedia.org/wiki/Glob_(programming)) pattern. This
+    means esbuild will use that entry point as a pattern to search for files
+    on the file system and will then replace that entry point with any
+    matching files that were found. So for example, an entry point of `*.js`
+    will cause esbuild to consider all files in the current directory that
+    end in `.js` to be entry points.
 
-  - p: >
-      The glob matcher that esbuild implements is intentionally simple, and does
-      not support more advanced features found in certain other glob libraries.
-      Only two kinds of wildcards are supported:
+- p: >
+    The glob matcher that esbuild implements is intentionally simple, and does
+    not support more advanced features found in certain other glob libraries.
+    Only two kinds of wildcards are supported:
 
-  - ul:
-    - >
-      `*`
-      <p>
-      This wildcard matches any number of characters (including none) except
-      that it does not match a slash character (i.e. a `/`), which means it
-      does not cause esbuild to traverse into subdirectories. For example,
-      `*.js` will match `foo.js` but not `bar/foo.js`.
-      </p>
+- ul:
+  - >
+    `*`
+    <p>
+    This wildcard matches any number of characters (including none) except
+    that it does not match a slash character (i.e. a `/`), which means it
+    does not cause esbuild to traverse into subdirectories. For example,
+    `*.js` will match `foo.js` but not `bar/foo.js`.
+    </p>
 
-    - >
-      `/**/`
-      <p>
-      This wildcard matches zero or more path segments, which means it can be
-      used to tell esbuild to match against a whole directory tree. For example,
-      `./**/*.js` will match `./foo.js` and `./bar/foo.js` and `./a/b/c/foo.js`.
-      </p>
+  - >
+    `/**/`
+    <p>
+    This wildcard matches zero or more path segments, which means it can be
+    used to tell esbuild to match against a whole directory tree. For example,
+    `./**/*.js` will match `./foo.js` and `./bar/foo.js` and `./a/b/c/foo.js`.
+    </p>
 
-  - p: >
-      If you are using esbuild via the CLI, keep in mind that if you do not
-      quote arguments that contain shell metacharacters before you pass them
-      to esbuild, your shell will likely expand them before esbuild sees them.
-      So if you run `esbuild "*.js"` (with quotes) then esbuild will see an
-      entry point of `*.js` and the glob-style entry point rules described
-      above will apply. But if you run `esbuild *.js` (without quotes)
-      then esbuild will see whatever your current shell decided to expand
-      `*.js` into (which may include seeing nothing at all if your shell
-      expanded it into nothing). Using esbuild's built-in glob pattern support
-      can be a convenient way to ensure cross-platform consistency by avoiding
-      shell-specific behavior, but it requires you to quote your arguments
-      correctly so that your shell doesn't interpret them.
+- p: >
+    If you are using esbuild via the CLI, keep in mind that if you do not
+    quote arguments that contain shell metacharacters before you pass them
+    to esbuild, your shell will likely expand them before esbuild sees them.
+    So if you run `esbuild "*.js"` (with quotes) then esbuild will see an
+    entry point of `*.js` and the glob-style entry point rules described
+    above will apply. But if you run `esbuild *.js` (without quotes)
+    then esbuild will see whatever your current shell decided to expand
+    `*.js` into (which may include seeing nothing at all if your shell
+    expanded it into nothing). Using esbuild's built-in glob pattern support
+    can be a convenient way to ensure cross-platform consistency by avoiding
+    shell-specific behavior, but it requires you to quote your arguments
+    correctly so that your shell doesn't interpret them.
 
-  - h3: Loader
+  ## Loader
 
   - p: >
       This option changes how a given input file is interpreted. For example,
@@ -2224,7 +2213,7 @@
           }
         }
 
-  - h3: Stdin
+  ## Stdin
 
   - p: >
       Normally the build API call takes one or more file names as input.
@@ -2291,9 +2280,9 @@
           }
         }
 
-  - h2: Output contents
+  # Output contents
 
-  - h3: Banner
+  ## Banner
 
   - p: >
       Use this to insert an arbitrary string at the beginning of generated
@@ -2348,7 +2337,7 @@
       (other than a `@charset` rule), so using a banner to inject CSS rules may
       accidentally disable imports of external stylesheets.
 
-  - h3: Charset
+  ## Charset
 
   - p: >
       By default esbuild's output is ASCII-only. Any non-ASCII characters are
@@ -2448,7 +2437,7 @@
       files as UTF-8.
       </p>
 
-  - h3: Footer
+  ## Footer
 
   - p: >
       Use this to insert an arbitrary string at the end of generated JavaScript
@@ -2497,7 +2486,7 @@
       This is similar to [banner](#banner) which inserts at the beginning
       instead of the end.
 
-  - h3: Format
+  ## Format
 
   - p: >
       This sets the output format for the generated JavaScript files. There are
@@ -2680,7 +2669,7 @@
       customize the output extension for the files esbuild generates. You can
       read more about using ECMAScript modules in node [here](https://nodejs.org/api/esm.html#enabling).
 
-  - h3: Global name
+  ## Global name
 
   - p: >
       This option only matters when the [format](#format) setting is `iife`
@@ -2788,7 +2777,7 @@
         return require_stdin();
       })();
 
-  - h3: Legal comments
+  ## Legal comments
 
   - p: >
       A "legal comment" is considered to be any statement-level comment in JS
@@ -2857,7 +2846,7 @@
       block. So comments inside expressions or at the declaration level are
       not considered legal comments.
 
-  - h3: Line limit
+  ## Line limit
 
   - p: >
       This setting is a way to prevent esbuild from generating output files
@@ -2911,7 +2900,7 @@
       your files bigger, as the extra newlines take up additional space in
       the file (even after gzip compression).
 
-  - h3: Splitting
+  ## Splitting
 
   - warning: >
       Code splitting is still a work in progress. It currently only works with
@@ -2994,9 +2983,9 @@
           }
         }
 
-  - h2: Output location
+  # Output location
 
-  - h3: Allow overwrite
+  ## Allow overwrite
 
   - p: >
       Enabling this setting allows output files to overwrite input files. It's
@@ -3040,7 +3029,7 @@
           }
         }
 
-  - h3: Asset names
+  ## Asset names
 
   - p: >
       This option controls the file names of the additional output files generated
@@ -3144,7 +3133,7 @@
       This option is similar to the [chunk names](#chunk-names) and
       [entry names](#entry-names) options.
 
-  - h3: Chunk names
+  ## Chunk names
 
   - p: >
       This option controls the file names of the chunks of shared code that are
@@ -3243,7 +3232,7 @@
       This option is similar to the [asset names](#asset-names) and
       [entry names](#entry-names) options.
 
-  - h3: Entry names
+  ## Entry names
 
   - p: >
       This option controls the file names of the output files corresponding to each
@@ -3364,7 +3353,7 @@
       This option is similar to the [asset names](#asset-names) and
       [chunk names](#chunk-names) options.
 
-  - h3: Out extension
+  ## Out extension
 
   - p: >
       This option lets you customize the file extension of the files that
@@ -3414,7 +3403,7 @@
           }
         }
 
-  - h3: Outbase
+  ## Outbase
 
   - p: >
       If your build contains multiple entry points in separate directories, the
@@ -3476,7 +3465,7 @@
       contain <code>home/<wbr>index.js</code> and <code>about/<wbr>index.js</code>
       instead.
 
-  - h3: Outdir
+  ## Outdir
 
   - p: >
       This option sets the output directory for the build operation. For
@@ -3536,7 +3525,7 @@
       If you want to customize this behavior, you should change the
       [outbase directory](#outbase).
 
-  - h3: Outfile
+  ## Outfile
 
   - p: >
       This option sets the output file name for the build operation. This is
@@ -3579,7 +3568,7 @@
           }
         }
 
-  - h3: Public path
+  ## Public path
 
   - p: >
       This is useful in combination with the [external file](/content-types/#external-file)
@@ -3635,7 +3624,7 @@
           }
         }
 
-  - h3: Write
+  ## Write
 
   - p: >
       The build API call can either write to the file system directly or return
@@ -3691,9 +3680,9 @@
       is implementation-dependent and may be changed at any time in between esbuild
       versions.
 
-  - h2: Path resolution
+  # Path resolution
 
-  - h3: Alias
+  ## Alias
 
   - p: >
       This feature lets you substitute one package for another when bundling.
@@ -3754,7 +3743,7 @@
       directory that esbuild uses can be set with the [working directory](#working-directory)
       feature.
 
-  - h3: Conditions
+  ## Conditions
 
   - p: >
       This feature controls how the `exports` field in `package.json` is
@@ -3800,7 +3789,7 @@
           }
         }
 
-  - h4: How conditions work
+  ### How conditions work
 
   - p: >
       Conditions allow you to redirect the same import path to different file
@@ -3918,7 +3907,7 @@
       that can work with node because node deliberately doesn't implement loading
       ESM using `require`.
 
-  - h3: External
+  ## External
 
   - p: >
       You can mark a file or a package as external to exclude it from your
@@ -4065,7 +4054,7 @@
       path resolution ends.
       </p>
 
-  - h3: Main fields
+  ## Main fields
 
   - p: >
       When you import a package in node, the `main` field in that package's
@@ -4200,7 +4189,7 @@
       cause your package to be imported multiple times depending on how you
       configure it.
 
-  - h3: Node paths
+  ## Node paths
 
   - p: >
       Node's module resolution algorithm supports an environment variable called
@@ -4254,7 +4243,7 @@
       `NODE_PATH`, you will have to separate them with `:` on Unix and `;` on
       Windows. This is the same format that Node itself uses.
 
-  - h3: Packages
+  ## Packages
 
   - p: >
       Use this setting to control whether all of your package's dependencies
@@ -4340,7 +4329,7 @@
       the import path is rewritten by any configured [aliases](#alias), so the
       alias feature still has an effect when this setting is used.
 
-  - h3: Preserve symlinks
+  ## Preserve symlinks
 
   - p: >
       This setting mirrors the [`--preserve-symlinks`](https://nodejs.org/api/cli.html#cli_preserve_symlinks)
@@ -4398,7 +4387,7 @@
       and refers to a file system feature where a path can redirect to another
       path._
 
-  - h3: Resolve extensions
+  ## Resolve extensions
 
   - p: >
       The [resolution algorithm used by node](https://nodejs.org/api/modules.html#modules_file_modules)
@@ -4453,7 +4442,7 @@
       extensions in your import paths or change this setting to include the
       additional extensions that you want to be implicit.
 
-  - h3: Working directory
+  ## Working directory
 
   - p: >
       This API option lets you specify the working directory to use for the
@@ -4506,9 +4495,9 @@
       the manifest file (or one of its child directories) for the manifest
       file to be found by esbuild.
 
-  - h2: Transformation
+  # Transformation
 
-  - h3: JSX
+  ## JSX
 
   - p: >
       This option tells esbuild what to do about JSX syntax. Here are the available options:
@@ -4602,7 +4591,7 @@
           }
         }
 
-  - h3: JSX dev
+  ## JSX dev
 
   - p: >
       If the [JSX](#jsx) transform has been set to `automatic`, then enabling
@@ -4662,7 +4651,7 @@
           }
         }
 
-  - h3: JSX factory
+  ## JSX factory
 
   - p: >
       This sets the function that is called for each JSX element. Normally a
@@ -4733,7 +4722,7 @@
       using a <code>// @jsx <wbr>h</code> comment. Note that this setting
       does not apply when the [JSX](#jsx) transform has been set to `automatic`.
 
-  - h3: JSX fragment
+  ## JSX fragment
 
   - p: >
       This sets the function that is called for each JSX fragment. Normally a
@@ -4805,7 +4794,7 @@
       setting does not apply when the [JSX](#jsx) transform has been set to
       `automatic`.
 
-  - h3: JSX import source
+  ## JSX import source
 
   - p: >
       If the [JSX](#jsx) transform has been set to `automatic`, then setting
@@ -4892,7 +4881,7 @@
       comment as well if the [JSX](#jsx) transform has not already been set by
       other means, or if you want that to be set on a per-file basis as well.
 
-  - h3: JSX side effects
+  ## JSX side effects
 
   - p: >
       By default esbuild assumes that JSX expressions are side-effect free,
@@ -4938,7 +4927,7 @@
           }
         }
 
-  - h3: Supported
+  ## Supported
 
   - p: >
       This setting lets you customize esbuild's set of unsupported syntax
@@ -5109,7 +5098,7 @@
       <li>`rebecca-purple`</li>
       </ul>
 
-  - h3: Target
+  ## Target
 
   - p: >
       This sets the target environment for the generated JavaScript and/or CSS
@@ -5222,9 +5211,9 @@
       individual feature level in addition to or instead of what `target`
       provides, you can do that with the [`supported`](#supported) setting.
 
-  - h2: Optimization
+  # Optimization
 
-  - h3: Define
+  ## Define
 
   - p: >
       This feature provides a way to replace global identifiers with
@@ -5370,7 +5359,7 @@
       a global variable with a shim), you may be able to use the similar
       [inject](#inject) feature to do that.
 
-  - h3: Drop
+  ## Drop
 
   - p: >
       This tells esbuild to edit your source code before building to drop
@@ -5489,7 +5478,7 @@
           }
         }
 
-  - h3: Drop labels
+  ## Drop labels
 
   - p: >
       This tells esbuild to edit your source code before building to drop
@@ -5580,7 +5569,7 @@
       and it doesn't work for code embedded within nested expressions. Which
       approach to use for a given project comes down to personal preference.
 
-  - h3: Ignore annotations
+  ## Ignore annotations
 
   - p: >
       Since JavaScript is a dynamic language, identifying unused code is
@@ -5666,7 +5655,7 @@
       package to get them fixed since they indicate a problem with the package
       and they will likely trip up other people too.
 
-  - h3: Inject
+  ## Inject
 
   - p: >
       This option allows you to automatically replace a global variable with an
@@ -5742,7 +5731,7 @@
       of with a constant, and the expression to replace is specified using an
       export name in a file instead of using an inline string in esbuild's API.
 
-  - h4: Auto-import for [JSX](/content-types/#jsx)
+  ### Auto-import for [JSX](/content-types/#jsx)
 
   - p: >
       React (the library for which JSX syntax was originally created) has a
@@ -5778,7 +5767,7 @@
       This code uses the React library as an example, but you can use this
       approach with any other JSX library as well with appropriate changes.
 
-  - h4: Injecting files without imports
+  ### Injecting files without imports
 
   - p: >
       You can also use this feature with files that have no exports. In that
@@ -5788,7 +5777,7 @@
       "hygienic" in that symbols with the same name in different files are
       renamed so they don't collide with each other.
 
-  - h4: Conditionally injecting a file
+  ### Conditionally injecting a file
 
   - p: >
       If you want to _conditionally_ import a file only if the export is
@@ -5798,7 +5787,7 @@
       [convention from Webpack](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free)
       that esbuild respects for any imported file, not just files used with inject.
 
-  - h3: Keep names
+  ## Keep names
 
   - p: >
       In JavaScript the `name` property on functions and classes defaults to a
@@ -5866,7 +5855,7 @@
       property on functions and classes. This is the case for environments that
       don't support ES6.
 
-  - h3: Mangle props
+  ## Mangle props
 
   - warning: >
       **Using this feature can break your code in subtle ways.** Do not use this
@@ -6228,7 +6217,7 @@
         "someProp_": "a"
       }
 
-  - h3: Minify
+  ## Minify
 
   - p: >
       When enabled, the generated code will be minified instead of
@@ -6566,7 +6555,7 @@
       and [Google Closure Compiler](https://github.com/google/closure-compiler#readme).
       </p>
 
-  - h3: Pure
+  ## Pure
 
   - p: >
       There is a convention used by various JavaScript tools where a special
@@ -6667,7 +6656,7 @@
       However, this mechanism is specific to the `console` API and doesn't work
       with other call expressions.
 
-  - h3: Tree shaking
+  ## Tree shaking
 
   - p: >
       Tree shaking is the term the JavaScript community uses for dead code
@@ -6818,7 +6807,7 @@
           }
         }
 
-  - h4: Tree shaking and side effects
+  ### Tree shaking and side effects
 
   - p: >
       The side effect detection used for tree shaking is conservative, meaning
@@ -6883,9 +6872,9 @@
       [ignoring annotations](#ignore-annotations) to make sure the bundled
       code is correct.
 
-  - h2: Source maps
+# Source maps
 
-  - h3: Source root
+## Source root
 
   - p: >
       This feature is only relevant when [source maps](#sourcemap) are enabled.
@@ -6932,7 +6921,7 @@
           }
         }
 
-  - h3: Sourcefile
+## Sourcefile
 
   - p: >
       This option sets the file name when using an input which has no file
@@ -6984,1010 +6973,1001 @@
           }
         }
 
-  - h3: Sourcemap
-
-  - p: >
-      Source maps can make it easier to debug your code. They encode the
-      information necessary to translate from a line/column offset in a
-      generated output file back to a line/column offset in the corresponding
-      original input file. This is useful if your generated code is
-      sufficiently different from your original code (e.g. your original code
-      is TypeScript or you enabled [minification](#minify)). This is also useful
-      if you prefer looking at individual files in your browser's developer
-      tools instead of one big bundled file.
-
-  - p: >
-      Note that source map output is supported for both JavaScript and CSS, and
-      the same options apply to both. Everything below that talks about `.js`
-      files also applies similarly to `.css` files.
-
-  - p: >
-      There are four different modes for source map generation:
-
-  - div: >
-      <ol start="1"><li>
-      <code>linked</code>
-      <p>
-      This mode means the source map is generated into a separate `.js.map`
-      output file alongside the `.js` output file, and the `.js` output file contains
-      a special `//# sourceMappingURL=` comment that points to the `.js.map` output file.
-      That way the browser knows where to find the source map for a given file
-      when you open the debugger. Use `linked` source map mode like this:
-      </p>
-      </li></ol>
-
-  - example:
-      in:
-        app.ts: 'let x: number = 1'
-
-      cli: |
-        esbuild app.ts --sourcemap --outfile=out.js
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          entryPoints: ['app.ts'],
-          sourcemap: true,
-          outfile: 'out.js',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.ts"},
-            Sourcemap:   api.SourceMapLinked,
-            Outfile:     "out.js",
-            Write:       true,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
-
-  - div: >
-      <ol start="2"><li>
-      <code>external</code>
-      <p>
-      This mode means the source map is generated into a separate `.js.map`
-      output file alongside the `.js` output file, but unlike `linked` mode the `.js`
-      output file does not contain a `//# sourceMappingURL=` comment. Use `external`
-      source map mode like this:
-      </p>
-      </li></ol>
-
-  - example:
-      in:
-        app.ts: 'let x: number = 1'
-
-      cli: |
-        esbuild app.ts --sourcemap=external --outfile=out.js
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          entryPoints: ['app.ts'],
-          sourcemap: 'external',
-          outfile: 'out.js',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.ts"},
-            Sourcemap:   api.SourceMapExternal,
-            Outfile:     "out.js",
-            Write:       true,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
-
-  - div: >
-      <ol start="3"><li>
-      <code>inline</code>
-      <p>
-      This mode means the source map is appended to the end of the `.js` output
-      file as a base64 payload inside a `//# sourceMappingURL=` comment. No
-      additional `.js.map` output file is generated. Keep in mind that source
-      maps are usually very big because they contain all of your original source
-      code, so you usually do not want to ship code containing `inline` source
-      maps. To remove the source code from the source map (keeping only the file
-      names and the line/column mappings), use the [sources content](#sources-content) option.
-      Use `inline` source map mode like this:
-      </p>
-      </li></ol>
-
-  - example:
-      in:
-        app.ts: 'let x: number = 1'
-
-      cli: |
-        esbuild app.ts --sourcemap=inline --outfile=out.js
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          entryPoints: ['app.ts'],
-          sourcemap: 'inline',
-          outfile: 'out.js',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.ts"},
-            Sourcemap:   api.SourceMapInline,
-            Outfile:     "out.js",
-            Write:       true,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
-
-  - div: >
-      <ol start="4"><li>
-      <code>both</code>
-      <p>
-      This mode is a combination of `inline` and `external`. The source map is
-      appended inline to the end of the `.js` output file, and another copy of
-      the same source map is written to a separate `.js.map` output file
-      alongside the `.js` output file. Use `both` source map mode like this:
-      </p>
-      </li></ol>
-
-  - example:
-      in:
-        app.ts: 'let x: number = 1'
-
-      cli: |
-        esbuild app.ts --sourcemap=both --outfile=out.js
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          entryPoints: ['app.ts'],
-          sourcemap: 'both',
-          outfile: 'out.js',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.ts"},
-            Sourcemap:   api.SourceMapInlineAndExternal,
-            Outfile:     "out.js",
-            Write:       true,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
-
-  - p: >
-      The [build](#build) API supports all four source map modes listed above,
-      but the [transform](#transform) API does not support the `linked` mode.
-      This is because the output returned from the transform API does not have an
-      associated filename. If you want the output of the transform API to have a
-      source map comment, you can append one yourself. In addition, the CLI form
-      of the transform API only supports the `inline` mode because the output is
-      written to stdout so generating multiple output files is not possible.
-
-  - p: >
-      If you want to "peek under the hood" to see what a source map does (or to
-      debug problems with your source map), you can upload the relevant output
-      file and the associated source map here:
-      [Source Map Visualization](https://evanw.github.io/source-map-visualization/).
-
-  - h4: Using source maps
-
-  - p: >
-      In the browser, source maps should be automatically picked up by the
-      browser's developer tools as long as the source map setting is enabled.
-      Note that the browser only uses the source maps to alter the display of
-      stack traces when they are logged to the console. The stack traces
-      themselves are not modified so inspecting <code>error.<wbr>stack</code>
-      in your code will still give the unmapped stack trace containing compiled
-      code. Here's how to enable this setting in your browser's developer tools:
-
-  - ul:
-      - 'Chrome: ⚙ → Enable JavaScript source maps'
-      - 'Safari: ⚙ → Sources → Enable source maps'
-      - 'Firefox: ··· → Enable Source Maps'
-
-  - p: >
-      In node, source maps are supported natively starting with [version v12.12.0](https://nodejs.org/en/blog/release/v12.12.0/).
-      This feature is disabled by default but can be enabled with a flag. Unlike
-      in the browser, the actual stack traces are also modified in node so
-      inspecting <code>error.<wbr>stack</code> in your code will give the mapped
-      stack trace containing your original source code. Here's how to enable this
-      setting in node (the <code>--enable-<wbr>source-<wbr>maps</code> flag must
-      come before the script file name):
-
-  - pre.sh: |
-      node --enable-source-maps app.js
-
-  - h3: Sources content
-
-  - p: >
-      [Source maps](#sourcemap) are generated using [version 3](https://sourcemaps.info/spec.html)
-      of the source map format, which is by far the most widely-supported
-      variant. Each source map will look something like this:
-
-  - pre.json: |
-      {
-        "version": 3,
-        "sources": ["bar.js", "foo.js"],
-        "sourcesContent": ["bar()", "foo()\nimport './bar'"],
-        "mappings": ";AAAA;;;ACAA;",
-        "names": []
-      }
-
-  - p: >
-      The `sourcesContent` field is an optional field that contains all of the
-      original source code. This is helpful for debugging because it means the
-      original source code will be available in the debugger.
-
-  - p: >
-      However, it's not needed in some scenarios. For example, if you are just
-      using source maps in production to generate stack traces that contain the
-      original file name, you don't need the original source code because there
-      is no debugger involved. In that case it can be desirable to omit the
-      `sourcesContent` field to make the source map smaller:
-
-  - example:
-      in:
-        app.js: '1 + 2'
-
-      cli: |
-        esbuild --bundle app.js --sourcemap --sources-content=false
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          bundle: true,
-          entryPoints: ['app.js'],
-          sourcemap: true,
-          sourcesContent: false,
-          outfile: 'out.js',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            Bundle:         true,
-            EntryPoints:    []string{"app.js"},
-            Sourcemap:      api.SourceMapInline,
-            SourcesContent: api.SourcesContentExclude,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
-
-  - h2: Build metadata
-
-  - h3: Analyze
-
-  - info: >
-      If you're looking for an interactive visualization, try esbuild's
-      [Bundle Size Analyzer](/analyze/) instead. You can upload your esbuild
-      [metafile](#metafile) to see a bundle size breakdown.
-
-  - p: >
-      Using the analyze feature generates an easy-to-read report about the contents of your bundle:
-
-  - example:
-      install:
-        react: '17.0.2'
-        react-dom: '17.0.2'
-
-      in:
-        example.jsx: |
-          import * as React from 'react'
-          import * as Server from 'react-dom/server'
-
-          let Greet = () => <h1>Hello, world!</h1>
-          console.log(Server.renderToString(<Greet />))
-
-      cli:
-        - $: |
-            esbuild --bundle example.jsx --outfile=out.js --minify --analyze
-
-        - expect: |2
-
-              out.js                                                                    27.6kb  100.0%
-               ├ node_modules/react-dom/cjs/react-dom-server.browser.production.min.js  19.2kb   69.8%
-               ├ node_modules/react/cjs/react.production.min.js                          5.9kb   21.4%
-               ├ node_modules/object-assign/index.js                                     962b     3.4%
-               ├ example.jsx                                                             137b     0.5%
-               ├ node_modules/react-dom/server.browser.js                                 50b     0.2%
-               └ node_modules/react/index.js                                              50b     0.2%
-
-            ...
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        let result = await esbuild.build({
-          entryPoints: ['example.jsx'],
-          outfile: 'out.js',
-          minify: true,
-          metafile: true,
-        })
-
-        console.log(await esbuild.analyzeMetafile(result.metafile))
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "fmt"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints:       []string{"example.jsx"},
-            Outfile:           "out.js",
-            MinifyWhitespace:  true,
-            MinifyIdentifiers: true,
-            MinifySyntax:      true,
-            Metafile:          true,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-
-          fmt.Printf("%s", api.AnalyzeMetafile(result.Metafile, api.AnalyzeMetafileOptions{}))
-        }
-
-  - p: >
-      The information shows which input files ended up in each output file as
-      well as the percentage of the output file they ended up taking up. If you
-      would like additional information, you can enable the "verbose" mode.
-      This currently shows the import path from the entry point to each input
-      file which tells you why a given input file is being included in the bundle:
-
-  - example:
-      install:
-        react: '17.0.2'
-        react-dom: '17.0.2'
-
-      in:
-        example.jsx: |
-          import * as React from 'react'
-          import * as Server from 'react-dom/server'
-
-          let Greet = () => <h1>Hello, world!</h1>
-          console.log(Server.renderToString(<Greet />))
-
-      cli:
-        - $: |
-            esbuild --bundle example.jsx --outfile=out.js --minify --analyze=verbose
-
-        - expect: |2
-
-              out.js ─────────────────────────────────────────────────────────────────── 27.6kb ─ 100.0%
-               ├ node_modules/react-dom/cjs/react-dom-server.browser.production.min.js ─ 19.2kb ── 69.8%
-               │  └ node_modules/react-dom/server.browser.js
-               │     └ example.jsx
-               ├ node_modules/react/cjs/react.production.min.js ───────────────────────── 5.9kb ── 21.4%
-               │  └ node_modules/react/index.js
-               │     └ example.jsx
-               ├ node_modules/object-assign/index.js ──────────────────────────────────── 962b ──── 3.4%
-               │  └ node_modules/react-dom/cjs/react-dom-server.browser.production.min.js
-               │     └ node_modules/react-dom/server.browser.js
-               │        └ example.jsx
-               ├ example.jsx ──────────────────────────────────────────────────────────── 137b ──── 0.5%
-               ├ node_modules/react-dom/server.browser.js ──────────────────────────────── 50b ──── 0.2%
-               │  └ example.jsx
-               └ node_modules/react/index.js ───────────────────────────────────────────── 50b ──── 0.2%
-                  └ example.jsx
-
-            ...
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        let result = await esbuild.build({
-          entryPoints: ['example.jsx'],
-          outfile: 'out.js',
-          minify: true,
-          metafile: true,
-        })
-
-        console.log(await esbuild.analyzeMetafile(result.metafile, {
-          verbose: true,
-        }))
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "fmt"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints:       []string{"example.jsx"},
-            Outfile:           "out.js",
-            MinifyWhitespace:  true,
-            MinifyIdentifiers: true,
-            MinifySyntax:      true,
-            Metafile:          true,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-
-          fmt.Printf("%s", api.AnalyzeMetafile(result.Metafile, api.AnalyzeMetafileOptions{
-            Verbose: true,
-          }))
-        }
-
-  - p: >
-      This analysis is just a visualization of the information that can be found
-      in the [metafile](#metafile). If this analysis doesn't exactly suit your
-      needs, you are welcome to build your own visualization using the information
-      in the metafile.
-
-  - p: >
-      Note that this formatted analysis summary is intended for humans, not
-      machines. The specific formatting may change over time which will likely
-      break any tools that try to parse it. You should not write a tool to parse
-      this data. You should be using the information in the [JSON metadata file](#metafile)
-      instead. Everything in this visualization is derived from the JSON metadata
-      so you are not losing out on any information by not parsing esbuild's
-      formatted analysis summary.
-
-  - h3: Metafile
-
-  - p: >
-      This option tells esbuild to produce some metadata about the build in
-      JSON format. The following example puts the metadata in a file called
-      `meta.json`:
-
-  - example:
-      in:
-        app.js: '1 + 2'
-
-      cli: |
-        esbuild app.js --bundle --metafile=meta.json --outfile=out.js
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-        import fs from 'node:fs'
-
-        let result = await esbuild.build({
-          entryPoints: ['app.js'],
-          bundle: true,
-          metafile: true,
-          outfile: 'out.js',
-        })
-
-        fs.writeFileSync('meta.json', JSON.stringify(result.metafile))
-
-      go: |
-        package main
-
-        import "io/ioutil"
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.js"},
-            Bundle:      true,
-            Metafile:    true,
-            Outfile:     "out.js",
-            Write:       true,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-
-          ioutil.WriteFile("meta.json", []byte(result.Metafile), 0644)
-        }
-
-  - p: >
-      This data can then be analyzed by other tools. For an interactive
-      visualization, you can use esbuild's own [Bundle Size Analyzer](/analyze/).
-      For a quick textual analysis, you can use esbuild's build-in [analyze](#analyze)
-      feature. Or you can write your own analysis which uses this information.
-
-  - p: >
-      The metadata JSON format looks like this (described using a TypeScript
-      interface):
-
-  - pre.ts: |
-      interface Metafile {
-        inputs: {
-          [path: string]: {
-            bytes: number
-            imports: {
-              path: string
-              kind: string
-              external?: boolean
-              original?: string
-              with?: Record<string, string>
-            }[]
-            format?: string
-            with?: Record<string, string>
-          }
-        }
-        outputs: {
-          [path: string]: {
-            bytes: number
-            inputs: {
-              [path: string]: {
-                bytesInOutput: number
+## Sourcemap
+
+* allows
+  * making easier to debug your code
+    * Reason: 🧠encode the information necessary to translate from a line/column offset | generated output file back -- to a -- line/column offset | corresponding original input file 🧠
+* use cases
+  * your generated code is sufficiently different vs your original code 
+    * _Example:_ your original code
+      * is TypeScript or
+      * you enabled [minification](#minify)
+  * look at INDIVIDUAL files | your browser's developer tools
+    * vs 1 big bundled file
+
+* supported for
+  * JS
+  * CSS
+
+* different modes for source map generation
+  * linked
+    * TODO:
+              <p>
+              This mode means the source map is generated into a separate `.js.map`
+              output file alongside the `.js` output file, and the `.js` output file contains
+              a special `//# sourceMappingURL=` comment that points to the `.js.map` output file.
+              That way the browser knows where to find the source map for a given file
+              when you open the debugger. Use `linked` source map mode like this:
+              </p>
+              </li></ol>
+
+          - example:
+              in:
+                app.ts: 'let x: number = 1'
+
+              cli: |
+                esbuild app.ts --sourcemap --outfile=out.js
+
+              mjs: |
+                import * as esbuild from 'esbuild'
+
+                await esbuild.build({
+                  entryPoints: ['app.ts'],
+                  sourcemap: true,
+                  outfile: 'out.js',
+                })
+
+              go: |
+                package main
+
+                import "github.com/evanw/esbuild/pkg/api"
+                import "os"
+
+                func main() {
+                  result := api.Build(api.BuildOptions{
+                    EntryPoints: []string{"app.ts"},
+                    Sourcemap:   api.SourceMapLinked,
+                    Outfile:     "out.js",
+                    Write:       true,
+                  })
+
+                  if len(result.Errors) > 0 {
+                    os.Exit(1)
+                  }
+                }
+
+  * external
+            <p>
+            This mode means the source map is generated into a separate `.js.map`
+            output file alongside the `.js` output file, but unlike `linked` mode the `.js`
+            output file does not contain a `//# sourceMappingURL=` comment. Use `external`
+            source map mode like this:
+            </p>
+            </li></ol>
+
+        - example:
+            in:
+              app.ts: 'let x: number = 1'
+
+            cli: |
+              esbuild app.ts --sourcemap=external --outfile=out.js
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              await esbuild.build({
+                entryPoints: ['app.ts'],
+                sourcemap: 'external',
+                outfile: 'out.js',
+              })
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints: []string{"app.ts"},
+                  Sourcemap:   api.SourceMapExternal,
+                  Outfile:     "out.js",
+                  Write:       true,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+              }
+
+  * inline
+            <p>
+            This mode means the source map is appended to the end of the `.js` output
+            file as a base64 payload inside a `//# sourceMappingURL=` comment. No
+            additional `.js.map` output file is generated. Keep in mind that source
+            maps are usually very big because they contain all of your original source
+            code, so you usually do not want to ship code containing `inline` source
+            maps. To remove the source code from the source map (keeping only the file
+            names and the line/column mappings), use the [sources content](#sources-content) option.
+            Use `inline` source map mode like this:
+            </p>
+            </li></ol>
+
+        - example:
+            in:
+              app.ts: 'let x: number = 1'
+
+            cli: |
+              esbuild app.ts --sourcemap=inline --outfile=out.js
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              await esbuild.build({
+                entryPoints: ['app.ts'],
+                sourcemap: 'inline',
+                outfile: 'out.js',
+              })
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints: []string{"app.ts"},
+                  Sourcemap:   api.SourceMapInline,
+                  Outfile:     "out.js",
+                  Write:       true,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+              }
+
+  * both
+            <p>
+            This mode is a combination of `inline` and `external`. The source map is
+            appended inline to the end of the `.js` output file, and another copy of
+            the same source map is written to a separate `.js.map` output file
+            alongside the `.js` output file. Use `both` source map mode like this:
+            </p>
+            </li></ol>
+
+        - example:
+            in:
+              app.ts: 'let x: number = 1'
+
+            cli: |
+              esbuild app.ts --sourcemap=both --outfile=out.js
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              await esbuild.build({
+                entryPoints: ['app.ts'],
+                sourcemap: 'both',
+                outfile: 'out.js',
+              })
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints: []string{"app.ts"},
+                  Sourcemap:   api.SourceMapInlineAndExternal,
+                  Outfile:     "out.js",
+                  Write:       true,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+              }
+
+        - p: >
+            The [build](#build) API supports all four source map modes listed above,
+            but the [transform](#transform) API does not support the `linked` mode.
+            This is because the output returned from the transform API does not have an
+            associated filename. If you want the output of the transform API to have a
+            source map comment, you can append one yourself. In addition, the CLI form
+            of the transform API only supports the `inline` mode because the output is
+            written to stdout so generating multiple output files is not possible.
+
+        - p: >
+            If you want to "peek under the hood" to see what a source map does (or to
+            debug problems with your source map), you can upload the relevant output
+            file and the associated source map here:
+            [Source Map Visualization](https://evanw.github.io/source-map-visualization/).
+
+### Using source maps
+
+        - p: >
+            In the browser, source maps should be automatically picked up by the
+            browser's developer tools as long as the source map setting is enabled.
+            Note that the browser only uses the source maps to alter the display of
+            stack traces when they are logged to the console. The stack traces
+            themselves are not modified so inspecting <code>error.<wbr>stack</code>
+            in your code will still give the unmapped stack trace containing compiled
+            code. Here's how to enable this setting in your browser's developer tools:
+
+        - ul:
+            - 'Chrome: ⚙ → Enable JavaScript source maps'
+            - 'Safari: ⚙ → Sources → Enable source maps'
+            - 'Firefox: ··· → Enable Source Maps'
+
+        - p: >
+            In node, source maps are supported natively starting with [version v12.12.0](https://nodejs.org/en/blog/release/v12.12.0/).
+            This feature is disabled by default but can be enabled with a flag. Unlike
+            in the browser, the actual stack traces are also modified in node so
+            inspecting <code>error.<wbr>stack</code> in your code will give the mapped
+            stack trace containing your original source code. Here's how to enable this
+            setting in node (the <code>--enable-<wbr>source-<wbr>maps</code> flag must
+            come before the script file name):
+
+        - pre.sh: |
+            node --enable-source-maps app.js
+
+        ## Sources content
+
+        - p: >
+            [Source maps](#sourcemap) are generated using [version 3](https://sourcemaps.info/spec.html)
+            of the source map format, which is by far the most widely-supported
+            variant. Each source map will look something like this:
+
+        - pre.json: |
+            {
+              "version": 3,
+              "sources": ["bar.js", "foo.js"],
+              "sourcesContent": ["bar()", "foo()\nimport './bar'"],
+              "mappings": ";AAAA;;;ACAA;",
+              "names": []
+            }
+
+        - p: >
+            The `sourcesContent` field is an optional field that contains all of the
+            original source code. This is helpful for debugging because it means the
+            original source code will be available in the debugger.
+
+        - p: >
+            However, it's not needed in some scenarios. For example, if you are just
+            using source maps in production to generate stack traces that contain the
+            original file name, you don't need the original source code because there
+            is no debugger involved. In that case it can be desirable to omit the
+            `sourcesContent` field to make the source map smaller:
+
+        - example:
+            in:
+              app.js: '1 + 2'
+
+            cli: |
+              esbuild --bundle app.js --sourcemap --sources-content=false
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              await esbuild.build({
+                bundle: true,
+                entryPoints: ['app.js'],
+                sourcemap: true,
+                sourcesContent: false,
+                outfile: 'out.js',
+              })
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  Bundle:         true,
+                  EntryPoints:    []string{"app.js"},
+                  Sourcemap:      api.SourceMapInline,
+                  SourcesContent: api.SourcesContentExclude,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+              }
+
+        # Build metadata
+
+        ## Analyze
+
+        - info: >
+            If you're looking for an interactive visualization, try esbuild's
+            [Bundle Size Analyzer](/analyze/) instead. You can upload your esbuild
+            [metafile](#metafile) to see a bundle size breakdown.
+
+        - p: >
+            Using the analyze feature generates an easy-to-read report about the contents of your bundle:
+
+        - example:
+            install:
+              react: '17.0.2'
+              react-dom: '17.0.2'
+
+            in:
+              example.jsx: |
+                import * as React from 'react'
+                import * as Server from 'react-dom/server'
+
+                let Greet = () => <h1>Hello, world!</h1>
+                console.log(Server.renderToString(<Greet />))
+
+            cli:
+              - $: |
+                  esbuild --bundle example.jsx --outfile=out.js --minify --analyze
+
+              - expect: |2
+
+                    out.js                                                                    27.6kb  100.0%
+                     ├ node_modules/react-dom/cjs/react-dom-server.browser.production.min.js  19.2kb   69.8%
+                     ├ node_modules/react/cjs/react.production.min.js                          5.9kb   21.4%
+                     ├ node_modules/object-assign/index.js                                     962b     3.4%
+                     ├ example.jsx                                                             137b     0.5%
+                     ├ node_modules/react-dom/server.browser.js                                 50b     0.2%
+                     └ node_modules/react/index.js                                              50b     0.2%
+
+                  ...
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              let result = await esbuild.build({
+                entryPoints: ['example.jsx'],
+                outfile: 'out.js',
+                minify: true,
+                metafile: true,
+              })
+
+              console.log(await esbuild.analyzeMetafile(result.metafile))
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "fmt"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints:       []string{"example.jsx"},
+                  Outfile:           "out.js",
+                  MinifyWhitespace:  true,
+                  MinifyIdentifiers: true,
+                  MinifySyntax:      true,
+                  Metafile:          true,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+
+                fmt.Printf("%s", api.AnalyzeMetafile(result.Metafile, api.AnalyzeMetafileOptions{}))
+              }
+
+        - p: >
+            The information shows which input files ended up in each output file as
+            well as the percentage of the output file they ended up taking up. If you
+            would like additional information, you can enable the "verbose" mode.
+            This currently shows the import path from the entry point to each input
+            file which tells you why a given input file is being included in the bundle:
+
+        - example:
+            install:
+              react: '17.0.2'
+              react-dom: '17.0.2'
+
+            in:
+              example.jsx: |
+                import * as React from 'react'
+                import * as Server from 'react-dom/server'
+
+                let Greet = () => <h1>Hello, world!</h1>
+                console.log(Server.renderToString(<Greet />))
+
+            cli:
+              - $: |
+                  esbuild --bundle example.jsx --outfile=out.js --minify --analyze=verbose
+
+              - expect: |2
+
+                    out.js ─────────────────────────────────────────────────────────────────── 27.6kb ─ 100.0%
+                     ├ node_modules/react-dom/cjs/react-dom-server.browser.production.min.js ─ 19.2kb ── 69.8%
+                     │  └ node_modules/react-dom/server.browser.js
+                     │     └ example.jsx
+                     ├ node_modules/react/cjs/react.production.min.js ───────────────────────── 5.9kb ── 21.4%
+                     │  └ node_modules/react/index.js
+                     │     └ example.jsx
+                     ├ node_modules/object-assign/index.js ──────────────────────────────────── 962b ──── 3.4%
+                     │  └ node_modules/react-dom/cjs/react-dom-server.browser.production.min.js
+                     │     └ node_modules/react-dom/server.browser.js
+                     │        └ example.jsx
+                     ├ example.jsx ──────────────────────────────────────────────────────────── 137b ──── 0.5%
+                     ├ node_modules/react-dom/server.browser.js ──────────────────────────────── 50b ──── 0.2%
+                     │  └ example.jsx
+                     └ node_modules/react/index.js ───────────────────────────────────────────── 50b ──── 0.2%
+                        └ example.jsx
+
+                  ...
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              let result = await esbuild.build({
+                entryPoints: ['example.jsx'],
+                outfile: 'out.js',
+                minify: true,
+                metafile: true,
+              })
+
+              console.log(await esbuild.analyzeMetafile(result.metafile, {
+                verbose: true,
+              }))
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "fmt"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints:       []string{"example.jsx"},
+                  Outfile:           "out.js",
+                  MinifyWhitespace:  true,
+                  MinifyIdentifiers: true,
+                  MinifySyntax:      true,
+                  Metafile:          true,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+
+                fmt.Printf("%s", api.AnalyzeMetafile(result.Metafile, api.AnalyzeMetafileOptions{
+                  Verbose: true,
+                }))
+              }
+
+        - p: >
+            This analysis is just a visualization of the information that can be found
+            in the [metafile](#metafile). If this analysis doesn't exactly suit your
+            needs, you are welcome to build your own visualization using the information
+            in the metafile.
+
+        - p: >
+            Note that this formatted analysis summary is intended for humans, not
+            machines. The specific formatting may change over time which will likely
+            break any tools that try to parse it. You should not write a tool to parse
+            this data. You should be using the information in the [JSON metadata file](#metafile)
+            instead. Everything in this visualization is derived from the JSON metadata
+            so you are not losing out on any information by not parsing esbuild's
+            formatted analysis summary.
+
+        ## Metafile
+
+        - p: >
+            This option tells esbuild to produce some metadata about the build in
+            JSON format. The following example puts the metadata in a file called
+            `meta.json`:
+
+        - example:
+            in:
+              app.js: '1 + 2'
+
+            cli: |
+              esbuild app.js --bundle --metafile=meta.json --outfile=out.js
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+              import fs from 'node:fs'
+
+              let result = await esbuild.build({
+                entryPoints: ['app.js'],
+                bundle: true,
+                metafile: true,
+                outfile: 'out.js',
+              })
+
+              fs.writeFileSync('meta.json', JSON.stringify(result.metafile))
+
+            go: |
+              package main
+
+              import "io/ioutil"
+              import "github.com/evanw/esbuild/pkg/api"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints: []string{"app.js"},
+                  Bundle:      true,
+                  Metafile:    true,
+                  Outfile:     "out.js",
+                  Write:       true,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+
+                ioutil.WriteFile("meta.json", []byte(result.Metafile), 0644)
+              }
+
+        - p: >
+            This data can then be analyzed by other tools. For an interactive
+            visualization, you can use esbuild's own [Bundle Size Analyzer](/analyze/).
+            For a quick textual analysis, you can use esbuild's build-in [analyze](#analyze)
+            feature. Or you can write your own analysis which uses this information.
+
+        - p: >
+            The metadata JSON format looks like this (described using a TypeScript
+            interface):
+
+        - pre.ts: |
+            interface Metafile {
+              inputs: {
+                [path: string]: {
+                  bytes: number
+                  imports: {
+                    path: string
+                    kind: string
+                    external?: boolean
+                    original?: string
+                    with?: Record<string, string>
+                  }[]
+                  format?: string
+                  with?: Record<string, string>
+                }
+              }
+              outputs: {
+                [path: string]: {
+                  bytes: number
+                  inputs: {
+                    [path: string]: {
+                      bytesInOutput: number
+                    }
+                  }
+                  imports: {
+                    path: string
+                    kind: string
+                    external?: boolean
+                  }[]
+                  exports: string[]
+                  entryPoint?: string
+                  cssBundle?: string
+                }
               }
             }
-            imports: {
-              path: string
-              kind: string
-              external?: boolean
-            }[]
-            exports: string[]
-            entryPoint?: string
-            cssBundle?: string
-          }
-        }
-      }
-
-  - h2: Logging
-
-  - h3: Color
-
-  - p: >
-      This option enables or disables colors in the error and warning messages
-      that esbuild writes to stderr file descriptor in the terminal. By
-      default, color is automatically enabled if stderr is a TTY session and
-      automatically disabled otherwise. Colored output in esbuild looks like this:
-
-  - pre.raw: >
-      {{ FORMAT_MESSAGES('import log from "logger"\nlog(typeof x == "null")', { sourcefile: 'example.js', bundle: true }) }}
-
-  - p: >
-      Colored output can be force-enabled by setting color to `true`. This is
-      useful if you are piping esbuild's stderr output into a TTY yourself:
-
-  - example:
-      cli: |
-        echo 'typeof x == "null"' | esbuild --color=true 2> stderr.txt
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        let js = 'typeof x == "null"'
-        await esbuild.transform(js, {
-          color: true,
-        })
-
-      go: |
-        package main
-
-        import "fmt"
-        import "github.com/evanw/esbuild/pkg/api"
-
-        func main() {
-          js := "typeof x == 'null'"
-
-          result := api.Transform(js, api.TransformOptions{
-            Color: api.ColorAlways,
-          })
-
-          if len(result.Errors) == 0 {
-            fmt.Printf("%s", result.Code)
-          }
-        }
-
-  - p: >
-      Colored output can also be set to `false` to disable colors.
-
-  - h3: Format messages
-
-  - p: >
-      This API call can be used to format the log errors and warnings returned
-      by the [build](#build) API and [transform](#transform) APIs as a
-      string using the same formatting that esbuild itself uses. This is useful
-      if you want to customize the way esbuild's logging works, such as processing
-      the log messages before they are printed or printing them to somewhere other
-      than to the console. Here's an example:
-
-  - example:
-      in:
-        app.js: '1 + 2'
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        let formatted = await esbuild.formatMessages([
-          {
-            text: 'This is an error',
-            location: {
-              file: 'app.js',
-              line: 10,
-              column: 4,
-              length: 3,
-              lineText: 'let foo = bar',
-            },
-          },
-        ], {
-          kind: 'error',
-          color: false,
-          terminalWidth: 100,
-        })
-
-        console.log(formatted.join('\n'))
-
-      go: |
-        package main
-
-        import "fmt"
-        import "github.com/evanw/esbuild/pkg/api"
-        import "strings"
-
-        func main() {
-          formatted := api.FormatMessages([]api.Message{
-            {
-              Text: "This is an error",
-              Location: &api.Location{
-                File:     "app.js",
-                Line:     10,
-                Column:   4,
-                Length:   3,
-                LineText: "let foo = bar",
-              },
-            },
-          }, api.FormatMessagesOptions{
-            Kind:          api.ErrorMessage,
-            Color:         false,
-            TerminalWidth: 100,
-          })
-
-          fmt.Printf("%s", strings.Join(formatted, "\n"))
-        }
-
-  - h4: Options
-
-  - p: >
-      The following options can be provided to control the formatting:
-
-  - example:
-      noCheck: true
-
-      js: |
-        interface FormatMessagesOptions {
-          kind: 'error' | 'warning';
-          color?: boolean;
-          terminalWidth?: number;
-        }
-
-      go: |
-        type FormatMessagesOptions struct {
-          Kind          MessageKind
-          Color         bool
-          TerminalWidth int
-        }
-
-  - ul:
-    - >
-      `kind`
-      <p>Controls whether these log messages are printed as errors or warnings.</p>
-    - >
-      `color`
-      <p>If this is `true`, Unix-style terminal escape codes are included for
-      colored output.</p>
-    - >
-      `terminalWidth`
-      <p>Provide a positive value to wrap long lines so that they don't overflow
-      past the provided column width. Provide `0` to disable word wrapping.</p>
-
-  - h3: Log level
-
-  - p: >
-      The log level can be changed to prevent esbuild from printing warning
-      and/or error messages to the terminal. The six log levels are:
-
-  - ul:
-    - >
-      <p>`silent`<br>Do not show any log output. This is the default log level
-      when using the JS [transform](#transform) API.</p>
-    - >
-      <p>`error`<br>Only show errors.</p>
-    - >
-      <p>`warning`<br>Only show warnings and errors. This is the default log
-      level when using the JS [build](#build) API.</p>
-    - >
-      <p>`info`<br>Show warnings, errors, and an output file summary. This is
-      the default log level when using the CLI.</p>
-    - >
-      <p>`debug`<br>Log everything from `info` and some additional messages
-      that may help you debug a broken bundle. This log level has a performance
-      impact and some of the messages may be false positives, so this information
-      is not shown by default.</p>
-    - >
-      <p>`verbose`<br>This generates a torrent of log messages and was added to
-      debug issues with file system drivers. It's not intended for general use.</p>
-
-  - p: >
-      The log level can be set like this:
-
-  - example:
-      cli: |
-        echo 'typeof x == "null"' | esbuild --log-level=error
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        let js = 'typeof x == "null"'
-        await esbuild.transform(js, {
-          logLevel: 'error',
-        })
-
-      go: |
-        package main
-
-        import "fmt"
-        import "github.com/evanw/esbuild/pkg/api"
-
-        func main() {
-          js := "typeof x == 'null'"
-
-          result := api.Transform(js, api.TransformOptions{
-            LogLevel: api.LogLevelError,
-          })
-
-          if len(result.Errors) == 0 {
-            fmt.Printf("%s", result.Code)
-          }
-        }
-
-  - h3: Log limit
-
-  - p: >
-      By default, esbuild stops reporting log messages after 10 messages have
-      been reported. This avoids the accidental generation of an overwhelming number
-      of log messages, which can easily lock up slower terminal emulators such
-      as Windows command prompt. It also avoids accidentally using up the
-      whole scroll buffer for terminal emulators with limited scroll buffers.
-
-  - p: >
-      The log limit can be changed to another value, and can also be disabled
-      completely by setting it to zero. This will show all log messages:
-
-  - example:
-      in:
-        app.js: '1 + 2'
-
-      cli: |
-        esbuild app.js --log-limit=0
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          entryPoints: ['app.js'],
-          logLimit: 0,
-          outfile: 'out.js',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.js"},
-            LogLimit:    0,
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
-
-  - h3: Log override
-
-  - p: >
-      This feature lets you change the log level of individual types of log
-      messages. You can use it to silence a particular type of warning, to
-      enable additional warnings that aren't enabled by default, or even to
-      turn warnings into errors.
-
-  - p: >
-      For example, when targeting older browsers, esbuild automatically
-      transforms regular expression literals which use features that are
-      too new for those browsers into <code>new <wbr>RegExp()</code> calls
-      to allow the generated code to run without being considered a syntax
-      error by the browser. However, these calls will still throw at runtime
-      if you don't add a polyfill for `RegExp` because that regular
-      expression syntax is still unsupported. If you want esbuild to generate
-      a warning when you use newer unsupported regular expression syntax, you
-      can do that like this:
-
-  - example:
-      in:
-        app.js: '/./d'
-
-      cli: |
-        esbuild app.js --log-override:unsupported-regexp=warning --target=chrome50
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          entryPoints: ['app.js'],
-          logOverride: {
-            'unsupported-regexp': 'warning',
-          },
-          target: 'chrome50',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"app.js"},
-            LogOverride: map[string]api.LogLevel{
-              "unsupported-regexp": api.LogLevelWarning,
-            },
-            Engines: []api.Engine{
-              {Name: api.EngineChrome, Version: "50"},
-            },
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
-
-  - p: >
-      The log level for each message type can be overridden to any value
-      supported by the [log level](#log-level) setting. All
-      currently-available message types are listed below (click on each one
-      for an example log message):
-
-  - p: |
-      <ul>
-        <li>
-          **JS:**
-          <ul>
-            <li><details><summary>`assert-to-with`</summary><pre>{{ FORMAT_MESSAGES('import data from "./data.json" assert { type: "json" }', { sourcefile: 'example.js', supported: { 'import-assertions': false } }) }}</pre></details></li>
-            <li><details><summary>`assert-type-json`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import * as data from "./data.json" assert { type: "json" }; console.log(data.value)', 'data.json': '{}' }, { bundle: true }) }}</pre></details></li>
-            <li><details><summary>`assign-to-constant`</summary><pre>{{ FORMAT_MESSAGES('const foo = 1; foo = 2', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`assign-to-define`</summary><pre>{{ FORMAT_MESSAGES('DEFINE = false', { sourcefile: 'example.js', define: { DEFINE: 'true' } }) }}</pre></details></li>
-            <li><details><summary>`assign-to-import`</summary><pre>{{ FORMAT_MESSAGES('import foo from "foo"; foo = null', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`call-import-namespace`</summary><pre>{{ FORMAT_MESSAGES('import * as foo from "foo"; foo()', { sourcefile: 'example.js', format: 'esm' }) }}</pre></details></li>
-            <li><details><summary>`class-name-will-throw`</summary><pre>{{ FORMAT_MESSAGES('class Foo { static key = "foo"; static [Foo.key] = 123 }', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`commonjs-variable-in-esm`</summary><pre>{{ FORMAT_MESSAGES('exports.foo = 1; export let bar = 2', { sourcefile: 'example.js', format: 'esm' }) }}</pre></details></li>
-            <li><details><summary>`delete-super-property`</summary><pre>{{ FORMAT_MESSAGES('class Foo extends Object { foo() { delete super.foo } }', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`direct-eval`</summary><pre>{{ FORMAT_MESSAGES('let apparentlyUnused; eval("actuallyUse(apparentlyUnused)")', { sourcefile: 'example.js', logOverride: { 'direct-eval': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`duplicate-case`</summary><pre>{{ FORMAT_MESSAGES('switch (foo) { case 1: return 1; case 1: return 2 }', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`duplicate-class-member`</summary><pre>{{ FORMAT_MESSAGES('class Foo { x = 1; x = 2 }', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`duplicate-object-key`</summary><pre>{{ FORMAT_MESSAGES('foo = { bar: 1, bar: 2 }', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`empty-import-meta`</summary><pre>{{ FORMAT_MESSAGES('foo = import.meta', { sourcefile: 'example.js', target: 'chrome50' }) }}</pre></details></li>
-            <li><details><summary>`equals-nan`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.filter(x => x !== NaN)', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`equals-negative-zero`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.filter(x => x !== -0)', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`equals-new-object`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.filter(x => x !== [])', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`html-comment-in-js`</summary><pre>{{ FORMAT_MESSAGES('<!-- comment -->', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`impossible-typeof`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.map(x => typeof x !== "null")', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`indirect-require`</summary><pre>{{ FORMAT_MESSAGES('let r = require, fs = r("fs")', { sourcefile: 'example.js', bundle: true, logOverride: { 'indirect-require': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`private-name-will-throw`</summary><pre>{{ FORMAT_MESSAGES('class Foo { get #foo() {} bar() { this.#foo++ } }', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`semicolon-after-return`</summary><pre>{{ FORMAT_MESSAGES('return\nx', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`suspicious-boolean-not`</summary><pre>{{ FORMAT_MESSAGES('if (!foo in bar) {\n}', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`suspicious-define`</summary><pre>{{ FORMAT_MESSAGES('', { sourcefile: 'example.js', define: { 'process.env.NODE_ENV': 'production' } }) }}</pre></details></li>
-            <li><details><summary>`suspicious-logical-operator`</summary><pre>{{ FORMAT_MESSAGES('const isInRange = x => 0 && x <= 1', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`suspicious-nullish-coalescing`</summary><pre>{{ FORMAT_MESSAGES('return name === user.name ?? ""', { sourcefile: 'example.js' }) }}</pre></details></li>
-            <li><details><summary>`this-is-undefined-in-esm`</summary><pre>{{ FORMAT_MESSAGES('this.foo = 1; export let bar = 2', { sourcefile: 'example.js', bundle: true, logOverride: { 'this-is-undefined-in-esm': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`unsupported-dynamic-import`</summary><pre>{{ FORMAT_MESSAGES('import(foo)', { sourcefile: 'example.js', bundle: true, logOverride: { 'unsupported-dynamic-import': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`unsupported-jsx-comment`</summary><pre>{{ FORMAT_MESSAGES('// @jsx 123', { sourcefile: 'example.jsx', loader: 'jsx' }) }}</pre></details></li>
-            <li><details><summary>`unsupported-regexp`</summary><pre>{{ FORMAT_MESSAGES('/./d', { sourcefile: 'example.js', target: 'chrome50', logOverride: { 'unsupported-regexp': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`unsupported-require-call`</summary><pre>{{ FORMAT_MESSAGES('require(foo)', { sourcefile: 'example.js', bundle: true, logOverride: { 'unsupported-require-call': 'warning' } }) }}</pre></details></li>
-          </ul>
-          <br>
-        </li>
-
-        <li>
-          **CSS:**
-          <ul>
-            <li><details><summary>`css-syntax-error`</summary><pre>{{ FORMAT_MESSAGES('div[] {\n}', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`invalid-@charset`</summary><pre>{{ FORMAT_MESSAGES('div { color: red } @charset "UTF-8";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`invalid-@import`</summary><pre>{{ FORMAT_MESSAGES('div { color: red } @import "foo.css";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`invalid-@layer`</summary><pre>{{ FORMAT_MESSAGES('@layer initial {\n}', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`invalid-calc`</summary><pre>{{ FORMAT_MESSAGES('div { z-index: calc(-(1+2)); }', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`js-comment-in-css`</summary><pre>{{ FORMAT_MESSAGES('// comment', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`undefined-composes-from`</summary><pre>{{ FORMAT_MESSAGES({ 'example.module.css': '.foo { composes: bar from "lib.module.css"; zoom: 1; }', 'lib.module.css': '.bar { zoom: 2 }' }, { bundle: true }) }}</pre></details></li>
-            <li><details><summary>`unsupported-@charset`</summary><pre>{{ FORMAT_MESSAGES('@charset "ASCII";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`unsupported-@namespace`</summary><pre>{{ FORMAT_MESSAGES('@namespace "ns";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`unsupported-css-property`</summary><pre>{{ FORMAT_MESSAGES('div { widht: 1px }', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
-            <li><details><summary>`unsupported-css-nesting`</summary><pre>{{ FORMAT_MESSAGES('a b {\n.foo & {\n}\n}', { sourcefile: 'example.css', loader: 'css', target: 'chrome50' }) }}</pre></details></li>
-          </ul>
-          <br>
-        </li>
-
-        <li>
-          **Bundler:**
-          <ul>
-            <li><details><summary>`ambiguous-reexport`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'export * from "./a"; export * from "./b"', 'a.js': 'export let foo = 1', 'b.js': 'export let foo = 2' }, { bundle: true, logOverride: { 'ambiguous-reexport': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`different-path-case`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import "./foo.js"\nimport "./Foo.js"', 'foo.js': '' }, { bundle: true }) }}</pre></details></li>
-            <li><details><summary>`empty-glob`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'function getIcon(name) {\n  return import("./icon-" + name + ".json")\n}' }, { bundle: true }) }}</pre></details></li>
-            <li><details><summary>`ignored-bare-import`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import "foo"', 'node_modules/foo/index.js': 'foo', 'node_modules/foo/package.json': '{\n  "sideEffects": false\n}' }, { bundle: true }) }}</pre></details></li>
-            <li><details><summary>`ignored-dynamic-import`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import("foo").catch(e => {\n})' }, { bundle: true, logOverride: { 'ignored-dynamic-import': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`import-is-undefined`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import { foo } from "./foo"', 'foo.js': 'let foo = 1' }, { bundle: true, logOverride: { 'import-is-undefined': 'warning' } }) }}</pre></details></li>
-            <li><details><summary>`require-resolve-not-external`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'let foo = require.resolve("foo")' }, { bundle: true, format: 'cjs' }) }}</pre></details></li>
-          </ul>
-          <br>
-        </li>
-
-        <li>
-          **Source maps:**
-          <ul>
-            <li><details><summary>`invalid-source-mappings`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=example.js.map', 'example.js.map': '{ "version": 3, "sources": ["example.js"],\n  "mappings": "aAAFA,UAAU;;"\n}' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
-            <li><details><summary>`sections-in-source-map`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=example.js.map', 'example.js.map': '{\n  "sections": []\n}' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
-            <li><details><summary>`missing-source-map`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=.' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
-            <li><details><summary>`unsupported-source-map-comment`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=data:application/json,"%"' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
-          </ul>
-          <br>
-        </li>
-
-        <li>
-          **Resolver:**
-          <ul>
-            <li><details><summary>`package.json`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '', 'package.json': '{ "type": "esm" }' }, { bundle: true }) }}</pre></details></li>
-            <li><details><summary>`tsconfig.json`</summary><pre>{{ FORMAT_MESSAGES({ 'example.ts': '', 'tsconfig.json': '{ "compilerOptions": { "target": "ES4" } }' }, { bundle: true }) }}</pre></details></li>
-          </ul>
-          <br>
-        </li>
-      </ul>
-
-  - p: >
-      These message types should be reasonably stable but new ones may be added
-      and old ones may occasionally be removed in the future. If a message type
-      is removed, any overrides for that message type will just be silently ignored.
+
+        # Logging
+
+        ## Color
+
+        - p: >
+            This option enables or disables colors in the error and warning messages
+            that esbuild writes to stderr file descriptor in the terminal. By
+            default, color is automatically enabled if stderr is a TTY session and
+            automatically disabled otherwise. Colored output in esbuild looks like this:
+
+        - pre.raw: >
+            {{ FORMAT_MESSAGES('import log from "logger"\nlog(typeof x == "null")', { sourcefile: 'example.js', bundle: true }) }}
+
+        - p: >
+            Colored output can be force-enabled by setting color to `true`. This is
+            useful if you are piping esbuild's stderr output into a TTY yourself:
+
+        - example:
+            cli: |
+              echo 'typeof x == "null"' | esbuild --color=true 2> stderr.txt
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              let js = 'typeof x == "null"'
+              await esbuild.transform(js, {
+                color: true,
+              })
+
+            go: |
+              package main
+
+              import "fmt"
+              import "github.com/evanw/esbuild/pkg/api"
+
+              func main() {
+                js := "typeof x == 'null'"
+
+                result := api.Transform(js, api.TransformOptions{
+                  Color: api.ColorAlways,
+                })
+
+                if len(result.Errors) == 0 {
+                  fmt.Printf("%s", result.Code)
+                }
+              }
+
+        - p: >
+            Colored output can also be set to `false` to disable colors.
+
+        ## Format messages
+
+        - p: >
+            This API call can be used to format the log errors and warnings returned
+            by the [build](#build) API and [transform](#transform) APIs as a
+            string using the same formatting that esbuild itself uses. This is useful
+            if you want to customize the way esbuild's logging works, such as processing
+            the log messages before they are printed or printing them to somewhere other
+            than to the console. Here's an example:
+
+        - example:
+            in:
+              app.js: '1 + 2'
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              let formatted = await esbuild.formatMessages([
+                {
+                  text: 'This is an error',
+                  location: {
+                    file: 'app.js',
+                    line: 10,
+                    column: 4,
+                    length: 3,
+                    lineText: 'let foo = bar',
+                  },
+                },
+              ], {
+                kind: 'error',
+                color: false,
+                terminalWidth: 100,
+              })
+
+              console.log(formatted.join('\n'))
+
+            go: |
+              package main
+
+              import "fmt"
+              import "github.com/evanw/esbuild/pkg/api"
+              import "strings"
+
+              func main() {
+                formatted := api.FormatMessages([]api.Message{
+                  {
+                    Text: "This is an error",
+                    Location: &api.Location{
+                      File:     "app.js",
+                      Line:     10,
+                      Column:   4,
+                      Length:   3,
+                      LineText: "let foo = bar",
+                    },
+                  },
+                }, api.FormatMessagesOptions{
+                  Kind:          api.ErrorMessage,
+                  Color:         false,
+                  TerminalWidth: 100,
+                })
+
+                fmt.Printf("%s", strings.Join(formatted, "\n"))
+              }
+
+        ### Options
+
+        - p: >
+            The following options can be provided to control the formatting:
+
+        - example:
+            noCheck: true
+
+            js: |
+              interface FormatMessagesOptions {
+                kind: 'error' | 'warning';
+                color?: boolean;
+                terminalWidth?: number;
+              }
+
+            go: |
+              type FormatMessagesOptions struct {
+                Kind          MessageKind
+                Color         bool
+                TerminalWidth int
+              }
+
+        - ul:
+          - >
+            `kind`
+            <p>Controls whether these log messages are printed as errors or warnings.</p>
+          - >
+            `color`
+            <p>If this is `true`, Unix-style terminal escape codes are included for
+            colored output.</p>
+          - >
+            `terminalWidth`
+            <p>Provide a positive value to wrap long lines so that they don't overflow
+            past the provided column width. Provide `0` to disable word wrapping.</p>
+
+        ## Log level
+
+        - p: >
+            The log level can be changed to prevent esbuild from printing warning
+            and/or error messages to the terminal. The six log levels are:
+
+        - ul:
+          - >
+            <p>`silent`<br>Do not show any log output. This is the default log level
+            when using the JS [transform](#transform) API.</p>
+          - >
+            <p>`error`<br>Only show errors.</p>
+          - >
+            <p>`warning`<br>Only show warnings and errors. This is the default log
+            level when using the JS [build](#build) API.</p>
+          - >
+            <p>`info`<br>Show warnings, errors, and an output file summary. This is
+            the default log level when using the CLI.</p>
+          - >
+            <p>`debug`<br>Log everything from `info` and some additional messages
+            that may help you debug a broken bundle. This log level has a performance
+            impact and some of the messages may be false positives, so this information
+            is not shown by default.</p>
+          - >
+            <p>`verbose`<br>This generates a torrent of log messages and was added to
+            debug issues with file system drivers. It's not intended for general use.</p>
+
+        - p: >
+            The log level can be set like this:
+
+        - example:
+            cli: |
+              echo 'typeof x == "null"' | esbuild --log-level=error
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              let js = 'typeof x == "null"'
+              await esbuild.transform(js, {
+                logLevel: 'error',
+              })
+
+            go: |
+              package main
+
+              import "fmt"
+              import "github.com/evanw/esbuild/pkg/api"
+
+              func main() {
+                js := "typeof x == 'null'"
+
+                result := api.Transform(js, api.TransformOptions{
+                  LogLevel: api.LogLevelError,
+                })
+
+                if len(result.Errors) == 0 {
+                  fmt.Printf("%s", result.Code)
+                }
+              }
+
+        ## Log limit
+
+        - p: >
+            By default, esbuild stops reporting log messages after 10 messages have
+            been reported. This avoids the accidental generation of an overwhelming number
+            of log messages, which can easily lock up slower terminal emulators such
+            as Windows command prompt. It also avoids accidentally using up the
+            whole scroll buffer for terminal emulators with limited scroll buffers.
+
+        - p: >
+            The log limit can be changed to another value, and can also be disabled
+            completely by setting it to zero. This will show all log messages:
+
+        - example:
+            in:
+              app.js: '1 + 2'
+
+            cli: |
+              esbuild app.js --log-limit=0
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              await esbuild.build({
+                entryPoints: ['app.js'],
+                logLimit: 0,
+                outfile: 'out.js',
+              })
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints: []string{"app.js"},
+                  LogLimit:    0,
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+              }
+
+        ## Log override
+
+        - p: >
+            This feature lets you change the log level of individual types of log
+            messages. You can use it to silence a particular type of warning, to
+            enable additional warnings that aren't enabled by default, or even to
+            turn warnings into errors.
+
+        - p: >
+            For example, when targeting older browsers, esbuild automatically
+            transforms regular expression literals which use features that are
+            too new for those browsers into <code>new <wbr>RegExp()</code> calls
+            to allow the generated code to run without being considered a syntax
+            error by the browser. However, these calls will still throw at runtime
+            if you don't add a polyfill for `RegExp` because that regular
+            expression syntax is still unsupported. If you want esbuild to generate
+            a warning when you use newer unsupported regular expression syntax, you
+            can do that like this:
+
+        - example:
+            in:
+              app.js: '/./d'
+
+            cli: |
+              esbuild app.js --log-override:unsupported-regexp=warning --target=chrome50
+
+            mjs: |
+              import * as esbuild from 'esbuild'
+
+              await esbuild.build({
+                entryPoints: ['app.js'],
+                logOverride: {
+                  'unsupported-regexp': 'warning',
+                },
+                target: 'chrome50',
+              })
+
+            go: |
+              package main
+
+              import "github.com/evanw/esbuild/pkg/api"
+              import "os"
+
+              func main() {
+                result := api.Build(api.BuildOptions{
+                  EntryPoints: []string{"app.js"},
+                  LogOverride: map[string]api.LogLevel{
+                    "unsupported-regexp": api.LogLevelWarning,
+                  },
+                  Engines: []api.Engine{
+                    {Name: api.EngineChrome, Version: "50"},
+                  },
+                })
+
+                if len(result.Errors) > 0 {
+                  os.Exit(1)
+                }
+              }
+
+        - p: >
+            The log level for each message type can be overridden to any value
+            supported by the [log level](#log-level) setting. All
+            currently-available message types are listed below (click on each one
+            for an example log message):
+
+        - p: |
+            <ul>
+              <li>
+                **JS:**
+                <ul>
+                  <li><details><summary>`assert-to-with`</summary><pre>{{ FORMAT_MESSAGES('import data from "./data.json" assert { type: "json" }', { sourcefile: 'example.js', supported: { 'import-assertions': false } }) }}</pre></details></li>
+                  <li><details><summary>`assert-type-json`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import * as data from "./data.json" assert { type: "json" }; console.log(data.value)', 'data.json': '{}' }, { bundle: true }) }}</pre></details></li>
+                  <li><details><summary>`assign-to-constant`</summary><pre>{{ FORMAT_MESSAGES('const foo = 1; foo = 2', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`assign-to-define`</summary><pre>{{ FORMAT_MESSAGES('DEFINE = false', { sourcefile: 'example.js', define: { DEFINE: 'true' } }) }}</pre></details></li>
+                  <li><details><summary>`assign-to-import`</summary><pre>{{ FORMAT_MESSAGES('import foo from "foo"; foo = null', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`call-import-namespace`</summary><pre>{{ FORMAT_MESSAGES('import * as foo from "foo"; foo()', { sourcefile: 'example.js', format: 'esm' }) }}</pre></details></li>
+                  <li><details><summary>`class-name-will-throw`</summary><pre>{{ FORMAT_MESSAGES('class Foo { static key = "foo"; static [Foo.key] = 123 }', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`commonjs-variable-in-esm`</summary><pre>{{ FORMAT_MESSAGES('exports.foo = 1; export let bar = 2', { sourcefile: 'example.js', format: 'esm' }) }}</pre></details></li>
+                  <li><details><summary>`delete-super-property`</summary><pre>{{ FORMAT_MESSAGES('class Foo extends Object { foo() { delete super.foo } }', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`direct-eval`</summary><pre>{{ FORMAT_MESSAGES('let apparentlyUnused; eval("actuallyUse(apparentlyUnused)")', { sourcefile: 'example.js', logOverride: { 'direct-eval': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`duplicate-case`</summary><pre>{{ FORMAT_MESSAGES('switch (foo) { case 1: return 1; case 1: return 2 }', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`duplicate-class-member`</summary><pre>{{ FORMAT_MESSAGES('class Foo { x = 1; x = 2 }', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`duplicate-object-key`</summary><pre>{{ FORMAT_MESSAGES('foo = { bar: 1, bar: 2 }', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`empty-import-meta`</summary><pre>{{ FORMAT_MESSAGES('foo = import.meta', { sourcefile: 'example.js', target: 'chrome50' }) }}</pre></details></li>
+                  <li><details><summary>`equals-nan`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.filter(x => x !== NaN)', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`equals-negative-zero`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.filter(x => x !== -0)', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`equals-new-object`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.filter(x => x !== [])', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`html-comment-in-js`</summary><pre>{{ FORMAT_MESSAGES('<!-- comment -->', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`impossible-typeof`</summary><pre>{{ FORMAT_MESSAGES('foo = foo.map(x => typeof x !== "null")', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`indirect-require`</summary><pre>{{ FORMAT_MESSAGES('let r = require, fs = r("fs")', { sourcefile: 'example.js', bundle: true, logOverride: { 'indirect-require': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`private-name-will-throw`</summary><pre>{{ FORMAT_MESSAGES('class Foo { get #foo() {} bar() { this.#foo++ } }', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`semicolon-after-return`</summary><pre>{{ FORMAT_MESSAGES('return\nx', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`suspicious-boolean-not`</summary><pre>{{ FORMAT_MESSAGES('if (!foo in bar) {\n}', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`suspicious-define`</summary><pre>{{ FORMAT_MESSAGES('', { sourcefile: 'example.js', define: { 'process.env.NODE_ENV': 'production' } }) }}</pre></details></li>
+                  <li><details><summary>`suspicious-logical-operator`</summary><pre>{{ FORMAT_MESSAGES('const isInRange = x => 0 && x <= 1', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`suspicious-nullish-coalescing`</summary><pre>{{ FORMAT_MESSAGES('return name === user.name ?? ""', { sourcefile: 'example.js' }) }}</pre></details></li>
+                  <li><details><summary>`this-is-undefined-in-esm`</summary><pre>{{ FORMAT_MESSAGES('this.foo = 1; export let bar = 2', { sourcefile: 'example.js', bundle: true, logOverride: { 'this-is-undefined-in-esm': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-dynamic-import`</summary><pre>{{ FORMAT_MESSAGES('import(foo)', { sourcefile: 'example.js', bundle: true, logOverride: { 'unsupported-dynamic-import': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-jsx-comment`</summary><pre>{{ FORMAT_MESSAGES('// @jsx 123', { sourcefile: 'example.jsx', loader: 'jsx' }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-regexp`</summary><pre>{{ FORMAT_MESSAGES('/./d', { sourcefile: 'example.js', target: 'chrome50', logOverride: { 'unsupported-regexp': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-require-call`</summary><pre>{{ FORMAT_MESSAGES('require(foo)', { sourcefile: 'example.js', bundle: true, logOverride: { 'unsupported-require-call': 'warning' } }) }}</pre></details></li>
+                </ul>
+                <br>
+              </li>
+
+              <li>
+                **CSS:**
+                <ul>
+                  <li><details><summary>`css-syntax-error`</summary><pre>{{ FORMAT_MESSAGES('div[] {\n}', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`invalid-@charset`</summary><pre>{{ FORMAT_MESSAGES('div { color: red } @charset "UTF-8";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`invalid-@import`</summary><pre>{{ FORMAT_MESSAGES('div { color: red } @import "foo.css";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`invalid-@layer`</summary><pre>{{ FORMAT_MESSAGES('@layer initial {\n}', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`invalid-calc`</summary><pre>{{ FORMAT_MESSAGES('div { z-index: calc(-(1+2)); }', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`js-comment-in-css`</summary><pre>{{ FORMAT_MESSAGES('// comment', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`undefined-composes-from`</summary><pre>{{ FORMAT_MESSAGES({ 'example.module.css': '.foo { composes: bar from "lib.module.css"; zoom: 1; }', 'lib.module.css': '.bar { zoom: 2 }' }, { bundle: true }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-@charset`</summary><pre>{{ FORMAT_MESSAGES('@charset "ASCII";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-@namespace`</summary><pre>{{ FORMAT_MESSAGES('@namespace "ns";', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-css-property`</summary><pre>{{ FORMAT_MESSAGES('div { widht: 1px }', { sourcefile: 'example.css', loader: 'css' }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-css-nesting`</summary><pre>{{ FORMAT_MESSAGES('a b {\n.foo & {\n}\n}', { sourcefile: 'example.css', loader: 'css', target: 'chrome50' }) }}</pre></details></li>
+                </ul>
+                <br>
+              </li>
+
+              <li>
+                **Bundler:**
+                <ul>
+                  <li><details><summary>`ambiguous-reexport`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'export * from "./a"; export * from "./b"', 'a.js': 'export let foo = 1', 'b.js': 'export let foo = 2' }, { bundle: true, logOverride: { 'ambiguous-reexport': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`different-path-case`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import "./foo.js"\nimport "./Foo.js"', 'foo.js': '' }, { bundle: true }) }}</pre></details></li>
+                  <li><details><summary>`empty-glob`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'function getIcon(name) {\n  return import("./icon-" + name + ".json")\n}' }, { bundle: true }) }}</pre></details></li>
+                  <li><details><summary>`ignored-bare-import`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import "foo"', 'node_modules/foo/index.js': 'foo', 'node_modules/foo/package.json': '{\n  "sideEffects": false\n}' }, { bundle: true }) }}</pre></details></li>
+                  <li><details><summary>`ignored-dynamic-import`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import("foo").catch(e => {\n})' }, { bundle: true, logOverride: { 'ignored-dynamic-import': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`import-is-undefined`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'import { foo } from "./foo"', 'foo.js': 'let foo = 1' }, { bundle: true, logOverride: { 'import-is-undefined': 'warning' } }) }}</pre></details></li>
+                  <li><details><summary>`require-resolve-not-external`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': 'let foo = require.resolve("foo")' }, { bundle: true, format: 'cjs' }) }}</pre></details></li>
+                </ul>
+                <br>
+              </li>
+
+              <li>
+                **Source maps:**
+                <ul>
+                  <li><details><summary>`invalid-source-mappings`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=example.js.map', 'example.js.map': '{ "version": 3, "sources": ["example.js"],\n  "mappings": "aAAFA,UAAU;;"\n}' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
+                  <li><details><summary>`sections-in-source-map`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=example.js.map', 'example.js.map': '{\n  "sections": []\n}' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
+                  <li><details><summary>`missing-source-map`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=.' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
+                  <li><details><summary>`unsupported-source-map-comment`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '//# sourceMappingURL=data:application/json,"%"' }, { bundle: true, sourcemap: true }) }}</pre></details></li>
+                </ul>
+                <br>
+              </li>
+
+              <li>
+                **Resolver:**
+                <ul>
+                  <li><details><summary>`package.json`</summary><pre>{{ FORMAT_MESSAGES({ 'example.js': '', 'package.json': '{ "type": "esm" }' }, { bundle: true }) }}</pre></details></li>
+                  <li><details><summary>`tsconfig.json`</summary><pre>{{ FORMAT_MESSAGES({ 'example.ts': '', 'tsconfig.json': '{ "compilerOptions": { "target": "ES4" } }' }, { bundle: true }) }}</pre></details></li>
+                </ul>
+                <br>
+              </li>
+            </ul>
+
+        - p: >
+            These message types should be reasonably stable but new ones may be added
+            and old ones may occasionally be removed in the future. If a message type
+            is removed, any overrides for that message type will just be silently ignored.
