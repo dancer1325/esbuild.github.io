@@ -1888,71 +1888,46 @@ body:
       continue to watch forever even when the parent process has finished, you
       may use <code>--watch=<wbr>forever</code> instead of `--watch`.
 
-  - h2: Input
+# Input
 
-  - h3: Entry points
+## Entry points
 
-  - p: >
-      This is an array of files that each serve as an input to the bundling
-      algorithm. They are called "entry points" because each one is meant to
-      be the initial script that is evaluated which then loads all other aspects
-      of the code that it represents. Instead of loading many libraries in your
-      page with `<script>` tags, you would instead use `import` statements to
-      import them into your entry point (or into another file that is then
-      imported into your entry point).
+* == `[arrayOfFiles]` / 
+  * each one == input to the bundling algorithm
+  * `[arrayOfFilePaths]`
+    * SIMPLEST way
+* Reason of the "entry points" naming: 🧠EACH one == initial script / evaluate which AFTERWARD loads ALL other code's aspects / it represents 🧠
+* if you want to use -> use `import` 
+  * ALTERNATIVE to `<script>`
 
-  - p: >
-      Simple apps only need one entry point but additional entry points can be
-      useful if there are multiple logically-independent groups of code such as
-      a main thread and a worker thread, or an app with separate relatively
-      unrelated areas such as a landing page, an editor page, and a settings page.
-      Separate entry points helps introduce separation of concerns and helps
-      reduce the amount of unnecessary code that the browser needs to download.
-      If applicable, enabling [code splitting](#splitting) can further reduce
-      download sizes when browsing to a second page whose entry point shares
-      some already-downloaded code with a first page that has already been
-      visited.
+* use cases
+  * | SIMPLE apps, ONLY need 1! entry point
+  * MULTIPLE entry points, |  
+    * MULTIPLE logically-independent groups of code / main thread + worker thread, or
+    * app / separate relatively unrelated areas (_Example:_ landing page, editor page, and a settings page)
 
-  - p: >
-      The simple way to specify entry points is to just pass an array of file
-      paths:
+* Separate entry points
+  * allows
+    * separation of concerns
+    * reduce the amount of unnecessary code / browser needs to download
+  * if applicable -> enable [code splitting](#splitting)
+    * Reason: 🧠reduce further download sizes | browse to a second page /
+      * entry point -- shares some ALREADY-downloaded code with a -- first page ALREADY visited 🧠
 
-  - example:
-      in:
-        home.ts: '1 + 2'
-        settings.ts: '1 + 2'
+* ways to specify
+  * via CLI
+    ```
+    esbuild src/content/examples/input/entryPoints/home.ts src/content/examples/input/entryPoints/settings.ts --bundle --outdir=out
+    ```
+  * | JS
+    ```
+    node src/content/examples/input/entryPoints/module.mjs
+    ```
+  * | go  
+    * Problems: How to run?
+      * Attempt1: `go src/content/examples/input/entryPoints/main.go`
 
-      cli: |
-        esbuild home.ts settings.ts --bundle --outdir=out
-
-      mjs: |
-        import * as esbuild from 'esbuild'
-
-        await esbuild.build({
-          entryPoints: ['home.ts', 'settings.ts'],
-          bundle: true,
-          write: true,
-          outdir: 'out',
-        })
-
-      go: |
-        package main
-
-        import "github.com/evanw/esbuild/pkg/api"
-        import "os"
-
-        func main() {
-          result := api.Build(api.BuildOptions{
-            EntryPoints: []string{"home.ts", "settings.ts"},
-            Bundle:      true,
-            Write:       true,
-            Outdir:      "out",
-          })
-
-          if len(result.Errors) > 0 {
-            os.Exit(1)
-          }
-        }
+* TODO:
 
   - p: >
       This will generate two output files, `out/home.js` and `out/settings.js`
