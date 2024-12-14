@@ -80,7 +80,7 @@
   * for
     * development builds
       * typically to enable
-        * [source maps](/api/#sourcemap) `--sourcemap`
+        * [source maps](api.md#sourcemap) `--sourcemap`
     * production builds
       * enable [minification](/api/#minify) `--minify`
       * configure the [target](/api/#target) environment | supported browsers
