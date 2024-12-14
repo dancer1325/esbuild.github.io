@@ -7,7 +7,7 @@ body:
       file contents. Some file extensions already have a loader configured
       for them by default, although the defaults can be overridden.
 
-  - h2: JavaScript
+## JavaScript
   - p: 'Loader: `js`'
 
   - p: >
@@ -448,7 +448,7 @@ body:
       and should therefore use the Node interpretation of `default` import. This
       is the same heuristic that Webpack uses.
 
-  - h2: TypeScript
+## TypeScript
   - p: 'Loader: `ts` or `tsx`'
 
   - p: >
@@ -733,7 +733,7 @@ body:
       the official TypeScript compiler. That space in the `tsx` grammar is
       reserved for JSX elements.
 
-  - h2: JSX
+## JSX
   - p: 'Loader: `jsx` or `tsx`'
 
   - p: >
@@ -936,7 +936,7 @@ body:
       import { version } from './package.json'
       console.log(version)
 
-  - h2: CSS
+## CSS
   - p: >
       Loader: `css` (also `global-css` and `local-css` for [CSS modules](#local-css))
 
