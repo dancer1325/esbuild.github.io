@@ -328,13 +328,13 @@
               you may want to consider running esbuild without using Yarn's CLI (i.e.
               not using `yarn esbuild`). This can result in esbuild running 10x faster.
 
-          - h2: Other ways to install
+# Other ways to install
 
           - p: >
               The recommended way to install esbuild is to [install the native executable using npm](#install-esbuild).
               But you can also install esbuild in these ways:
 
-          - h3: Download a build
+## Download a build
 
           - p: >
               If you have a Unix system, you can use the following command to download
@@ -434,7 +434,7 @@
               <sup>2</sup> This architecture is not on [node's list of supported architectures](https://nodejs.org/api/process.html#processarch)
               </footer>
 
-          - h3#wasm: Install the WASM version
+## #wasm: Install the WASM version
 
           - p: >
               In addition to the `esbuild` npm package, there is also an `esbuild-wasm`
